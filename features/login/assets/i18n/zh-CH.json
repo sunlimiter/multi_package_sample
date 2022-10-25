@@ -1,0 +1,6 @@
+{
+    "login_screen": {
+        "title": "欢迎, press SSO to authenticate",
+        "action": "登录"
+    }
+}

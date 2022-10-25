@@ -1,0 +1,26 @@
+name: login
+description: Login feature
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  common_dependencies: 0.0.1
+  core: 0.0.1
+  authentication: 0.0.1
+  network: 0.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/i18n/
