@@ -13,7 +13,7 @@ class AppInjectionModule implements InjectionModule {
     injector
       ..registerSingleton<AnalyticsLogger>(AppAnalyticsReceiver())
       ..registerSingleton<BuildConfig>(buildConfig)
-      ..registerLazySingleton<AuthenticationRepository>(() => IAuthenticationRepository())
-      ..registerLazySingleton<AuthenticationBloc>(() => AuthenticationBloc());
+      ..registerLazySingleton<AuthenticationRepository>(IAuthenticationRepository.new)
+      ..registerLazySingleton<AuthenticationBloc>(AuthenticationBloc.new);
   }
 }
