@@ -15,7 +15,7 @@ part 'authentication_state.dart';
 class AuthenticationBloc extends Cubit<AuthenticationState> {
   AuthenticationBloc() : super(const AuthenticationState.unknown()) {
     _authenticationStatusSubscription = _authenticationRepository.status.listen(
-      (status) => _mapAuthenticationStatusChangedToState(status),
+      _mapAuthenticationStatusChangedToState,
     );
   }
 
@@ -48,7 +48,7 @@ class AuthenticationBloc extends Cubit<AuthenticationState> {
   Future<void> _mapAuthenticationStatusChangedToState(AuthenticationStatus status) async {
     switch (status) {
       case AuthenticationStatus.unauthenticated:
-        emit(AuthenticationState.unauthenticated());
+        emit(const AuthenticationState.unauthenticated());
         break;
       case AuthenticationStatus.authenticated:
         final user = await _tryGetUser();
@@ -56,36 +56,42 @@ class AuthenticationBloc extends Cubit<AuthenticationState> {
         emit(authState);
         break;
       default:
-        emit(AuthenticationState.unknown());
+        emit(const AuthenticationState.unknown());
         break;
     }
   }
 
   static TransitionBuilder buildAuth() {
     return (context, child) {
-      return HookBuilder(builder: (_) {
-        final bloc = useBloc<AuthenticationBloc>();
-        useBlocListener<AuthenticationBloc,AuthenticationState>(bloc, (_, AuthenticationState? value, context) {
-          final LoginNavigator _loginNavigator = AppInjector.I.get();
-          final HomeNavigator _homeNavigator = AppInjector.I.get();
-          switch (value?.status) {
-            case AuthenticationStatus.unauthenticated:
-              if (bloc.navigator?.context != null) {
-                _loginNavigator.navigateToRoot(bloc.navigator!.context);
+      return HookBuilder(
+        builder: (_) {
+          final bloc = useBloc<AuthenticationBloc>();
+          useBlocListener<AuthenticationBloc, AuthenticationState>(
+            bloc,
+            (_, AuthenticationState? value, context) {
+              final LoginNavigator _loginNavigator = AppInjector.I.get();
+              final HomeNavigator _homeNavigator = AppInjector.I.get();
+              switch (value?.status) {
+                case AuthenticationStatus.unauthenticated:
+                  if (bloc.navigator?.context != null) {
+                    _loginNavigator.navigateToRoot(bloc.navigator!.context);
+                  }
+                  break;
+                case AuthenticationStatus.authenticated:
+                  if (bloc.navigator?.context != null) {
+                    _homeNavigator.navigateToRoot(bloc.navigator!.context);
+                  }
+                  break;
+                default:
+                  break;
               }
-              break;
-            case AuthenticationStatus.authenticated:
-              if (bloc.navigator?.context != null) {
-                _homeNavigator.navigateToRoot(bloc.navigator!.context);
-              }
-              break;
-            default:
-              break;
-          }
-        }, listenWhen: (state) => true);
+            },
+            listenWhen: (state) => true,
+          );
 
-        return child ?? Container();
-      });
+          return child ?? Container();
+        },
+      );
     };
   }
 }

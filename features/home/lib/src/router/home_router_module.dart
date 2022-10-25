@@ -5,8 +5,7 @@ import 'package:home/src/ui/home_screen.dart';
 
 class HomeRouterModule implements RouterModule {
   @override
-  Map<String, MaterialPageRoute> getRoutes(RouteSettings settings) =>
-      <String, MaterialPageRoute>{
+  Map<String, MaterialPageRoute> getRoutes(RouteSettings settings) => <String, MaterialPageRoute>{
         HomeRoutes.root: MaterialPageRoute(
           builder: (_) => HomeScreen(),
           settings: settings,

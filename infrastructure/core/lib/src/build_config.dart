@@ -1,5 +1,4 @@
 abstract class BuildConfig {
-
   Map<String, dynamic> get configs;
 
   bool? getBool(String key) => _getValueWithKeyOrThrowInCaseOfDifferentType<bool>(key);
@@ -19,8 +18,9 @@ abstract class BuildConfig {
         return value;
       } else {
         throw const FormatException(
-            // ignore: lines_longer_than_80_chars
-            'The value you are trying to get is not the same type that this function returns!');
+          // ignore: lines_longer_than_80_chars
+          'The value you are trying to get is not the same type that this function returns!',
+        );
       }
     } else {
       return null;

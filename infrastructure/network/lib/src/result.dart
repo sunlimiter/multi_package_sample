@@ -2,7 +2,7 @@
 ///Time: 2020/4/2
 ///Description:返回结果基类
 class ResultData {
-  static Error GlobleError = Error(code: "-1", message: "网络异常，请检查网络连接");
+  static Error GlobleError = Error(code: '-1', message: '网络异常，请检查网络连接');
 
   late bool ok;
   Error? error;
@@ -16,18 +16,18 @@ class ResultData {
   ResultData.fromJson(Map<String, dynamic> json) {
     result = json['result'];
     ok = json['ok'];
-    error = json['error'] != null ? new Error.fromJson(json['error']) : null;
+    error = json['error'] != null ? Error.fromJson(json['error']) : null;
     if (!ok && error == null) {
       error = GlobleError;
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['result'] = this.result;
-    data['ok'] = this.ok;
-    if (this.error != null) {
-      data['error'] = this.error!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['result'] = result;
+    data['ok'] = ok;
+    if (error != null) {
+      data['error'] = error!.toJson();
     }
     return data;
   }
@@ -45,9 +45,9 @@ class Error {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    data['code'] = this.code;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    data['code'] = code;
     return data;
   }
 }
@@ -66,9 +66,9 @@ class Result {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['message'] = this.message;
-    data['code'] = this.code;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    data['code'] = code;
     data['data'] = this.data;
     return data;
   }

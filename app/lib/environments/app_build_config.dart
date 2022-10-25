@@ -8,7 +8,6 @@ const baseUrl = String.fromEnvironment("baseUrl", defaultValue: 'https://apigw.9
 const debug = bool.fromEnvironment("debug", defaultValue: false);
 
 class AppBuildConfig extends BuildConfig {
-
   @override
   Map<String, dynamic> configs = {
     'analyticsLogs': analyticsLogs,

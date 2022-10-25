@@ -33,28 +33,12 @@ class HttpInterceptors extends InterceptorsWrapper {
     var user = await AppInjector.I.get<AuthenticationRepository>().getUser();
 
     options.headers.addAll({
-      "Accept": "application/json; charset=UTF-8",
+      'Accept': 'application/json; charset=UTF-8',
       'App-Info': appInfo,
       'Device-Id': '',
       'Token': user?.userModel?.token ?? '',
     });
     return super.onRequest(options, handler);
-  }
-
-  @override
-  void onResponse(
-    Response response,
-    ResponseInterceptorHandler handler,
-  ) {
-    super.onResponse(response, handler);
-  }
-
-  @override
-  void onError(
-    DioError err,
-    ErrorInterceptorHandler handler,
-  ) {
-    super.onError(err, handler);
   }
 
 // DioError resultError(DioError e)  {

@@ -1,7 +1,5 @@
 name: health
 
-versioning:
-  mode: independent
 
 packages:
   - app/*
@@ -57,6 +55,8 @@ scripts:
   #  clean:
   #    run: melos exec -c 6 -- flutter clean && melos run install
   #    description: Clean Flutter packages in this project and run bootstrap
+  pubspec_dependency_sorter: >
+    melos exec -c 6 -- "flutter pub run pubspec_dependency_sorter"
 
   app-run:
     description: '执行flutter run 命令'

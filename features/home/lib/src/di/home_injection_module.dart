@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:common_dependencies/common_dependencies.dart';
 import 'package:core/core.dart';
-import 'package:flutter/material.dart';
 import 'package:home/src/router/app_home_navigator.dart';
 
 class HomeInjectionModule implements InjectionModule {
@@ -13,6 +12,6 @@ class HomeInjectionModule implements InjectionModule {
   }) async {
     injector
         // PRESENTATION
-        .registerFactory<HomeNavigator>(() => AppHomeNavigator());
+        .registerFactory<HomeNavigator>(AppHomeNavigator.new);
   }
 }

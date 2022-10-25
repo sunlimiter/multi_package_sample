@@ -9,25 +9,29 @@ class LoginScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _cubit = useBloc<LoginCubit>();
-    useBlocListener<LoginCubit, LoginState>(_cubit, (_, state, _context) {
-      if (state.status.isSubmissionFailure) {
-        print('state==>${state.status}');
-        print('message=>${state.message}');
-        try {
-          Fluttertoast.showToast(
-              msg: "${state.message}",
+    useBlocListener<LoginCubit, LoginState>(
+      _cubit,
+      (_, state, _context) {
+        if (state.status.isSubmissionFailure) {
+          debugPrint('state==>${state.status}');
+          debugPrint('message=>${state.message}');
+          try {
+            Fluttertoast.showToast(
+              msg: state.message,
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 1,
               backgroundColor: Colors.red,
               textColor: Colors.white,
-              fontSize: 16.0);
-        } catch (ex, stack) {
-          print(ex);
-          print(stack);
+              fontSize: 16,
+            );
+          } catch (ex, stack) {
+            debugPrint('$ex');
+            debugPrint('$stack');
+          }
         }
-      }
-    }, listenWhen: (state) => true);
+      },
+      listenWhen: (state) => true,
+    );
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
       body: Padding(
@@ -59,7 +63,7 @@ class LoginScreen extends HookWidget {
 class _UsernameInput extends HookWidget {
   final LoginCubit cubit;
 
-  const _UsernameInput({Key? key,required this.cubit}) : super(key: key);
+  const _UsernameInput({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +73,7 @@ class _UsernameInput extends HookWidget {
 
     return TextField(
       key: const Key('loginForm_usernameInput_textField'),
-      onChanged: (username) => cubit.mapUsernameChangedToState(username),
+      onChanged: cubit.mapUsernameChangedToState,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         labelText: 'username',
@@ -82,7 +86,7 @@ class _UsernameInput extends HookWidget {
 class _PasswordInput extends HookWidget {
   final LoginCubit cubit;
 
-  const _PasswordInput({Key? key,required this.cubit}) : super(key: key);
+  const _PasswordInput({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +95,7 @@ class _PasswordInput extends HookWidget {
     );
     return TextField(
       key: const Key('loginForm_passwordInput_textField'),
-      onChanged: (password) => cubit.mapPasswordChangedToState(password),
+      onChanged: cubit.mapPasswordChangedToState,
       obscureText: true,
       decoration: InputDecoration(
         labelText: 'password',
@@ -105,7 +109,7 @@ class _LoginButton extends HookWidget {
   final LoginCubit cubit;
   final AnalyticsLogger _analyticsLogger = AppInjector.I.get();
 
-  _LoginButton({Key? key,required this.cubit}) : super(key: key);
+  _LoginButton({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -116,13 +120,13 @@ class _LoginButton extends HookWidget {
         ? const CircularProgressIndicator()
         : ElevatedButton(
             key: const Key('loginForm_continue_raisedButton'),
-            child: const Text('Login'),
             onPressed: state.status.isValidated
                 ? () {
                     _analyticsLogger.logEvent('login_submit_click');
                     cubit.mapLoginSubmittedToState();
                   }
                 : null,
+            child: const Text('Login'),
           );
   }
 }

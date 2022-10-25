@@ -21,7 +21,7 @@ abstract class HttpClient {
   Future<ResultData> post(
     String url, {
     Map<String, dynamic>? headers,
-    required body,
+    Map<String, dynamic>? body,
   });
 
   Future<ResultData> upload(
@@ -39,7 +39,7 @@ abstract class HttpClient {
   Future<ResultData> delete(
     String url, {
     Map<String, dynamic>? headers,
-    required body,
+    Map<String, dynamic>? body,
   });
 }
 
@@ -65,7 +65,7 @@ class HttpClientImpl implements HttpClient {
     _initApiClient();
   }
 
-  void _initApiClient() async {
+  Future<void> _initApiClient() async {
     if (httpInterceptors != null) {
       dio.interceptors.add(httpInterceptors!);
       dio.interceptors.add(LogInterceptor(responseBody: true)); //开启请求日志
@@ -82,7 +82,7 @@ class HttpClientImpl implements HttpClient {
     Response response = await dio.get(
       url,
       options: Options(
-        headers: headers == null ? {} : headers.map((key, value) => MapEntry(key.toString(), value)),
+        headers: headers == null ? {} : headers.map(MapEntry.new),
       ),
     );
     return ResultData.fromJson(response.data);
@@ -92,13 +92,13 @@ class HttpClientImpl implements HttpClient {
   Future<ResultData> post(
     String url, {
     Map<String, dynamic>? headers,
-    required body,
+    Map<String, dynamic>? body,
   }) async {
     Response response = await dio.post(
       url,
-      data: body == null ? {} : body,
+      data: body ?? {},
       options: Options(
-        headers: headers == null ? {} : headers.map((key, value) => MapEntry(key.toString(), value)),
+        headers: headers == null ? {} : headers.map(MapEntry.new),
       ),
     );
     return ResultData.fromJson(response.data);
@@ -110,14 +110,12 @@ class HttpClientImpl implements HttpClient {
     File file, {
     Map<String, dynamic>? headers,
   }) async {
-    var formData = FormData.fromMap({
-      'file': await MultipartFile.fromFile(file.path,filename: basename(file.path))
-    });
+    var formData = FormData.fromMap({'file': await MultipartFile.fromFile(file.path, filename: basename(file.path))});
     Response response = await dio.post(
       url,
       data: formData,
       options: Options(
-        headers: headers == null ? {"ACTION": "api/spider-fileupload/1.0/upload"} : headers.map((key, value) => MapEntry(key.toString(), value)),
+        headers: headers == null ? {'ACTION': 'api/spider-fileupload/1.0/upload'} : headers.map(MapEntry.new),
       ),
     );
     return ResultData.fromJson(response.data);
@@ -141,11 +139,11 @@ class HttpClientImpl implements HttpClient {
         if (req.statusCode == 200) {
           return true;
         } else {
-          debugPrint("文件下载失败：statusCode=${req.statusCode} statusMessage=${req.statusMessage}");
+          debugPrint('文件下载失败：statusCode=${req.statusCode} statusMessage=${req.statusMessage}');
         }
       }
     } catch (e) {
-      print(e);
+      debugPrint('$e');
     }
     return false;
   }
@@ -154,15 +152,15 @@ class HttpClientImpl implements HttpClient {
   Future<ResultData> delete(
     String url, {
     Map<String, dynamic>? headers,
-    body,
+    Map<String, dynamic>? body,
   }) async {
     // final response = await ZyHttp.delete(baseUrl + url).addParams(body).addHeaders(headers == null ? {} : headers.map((key, value) => MapEntry(key.toString(), value))).request();
     // return ResultData.fromJson(response.data);
     Response response = await dio.delete(
       url,
-      data: body == null ? {} : body,
+      data: body ?? {},
       options: Options(
-        headers: headers == null ? {} : headers.map((key, value) => MapEntry(key.toString(), value)),
+        headers: headers == null ? {} : headers.map(MapEntry.new),
       ),
     );
     return ResultData.fromJson(response.data);

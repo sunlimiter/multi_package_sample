@@ -9,8 +9,8 @@ class AppLoginNavigator with AppNavigator implements LoginNavigator {
       LoginRoutes.root,
       pushAndReplace: true,
     ).catchError((error, stack) {
-      print(error);
-      print(stack);
+      debugPrint(error);
+      debugPrint(stack);
     });
   }
 }

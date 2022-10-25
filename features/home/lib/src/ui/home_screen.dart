@@ -29,10 +29,8 @@ class HomeScreen extends HookWidget {
               },
             ),
             ElevatedButton(
+              onPressed: bloc.logout,
               child: const Text('Logout'),
-              onPressed: () {
-                bloc.logout();
-              },
             ),
           ],
         ),

@@ -5,7 +5,7 @@ class HomeLocalization extends BaseLocalization {
   HomeLocalization({
     required this.appLocale,
     required this.appPathFunction,
-  }) : super(appPathFunction: appPathFunction, locale: appLocale,debugLogs: true);
+  }) : super(appPathFunction: appPathFunction, locale: appLocale, debugLogs: true);
   @override
   // ignore: overridden_fields
   final String Function(Locale locale) appPathFunction;
