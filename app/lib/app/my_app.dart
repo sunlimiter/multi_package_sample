@@ -1,5 +1,4 @@
 import 'package:common_dependencies/common_dependencies.dart';
-import 'package:authentication/authentication.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
@@ -72,25 +71,30 @@ class ScaffoldWithNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GoRouter route = GoRouter.of(context);
+    final String location = route.location;
     return Scaffold(
       body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '首页',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notification_important_rounded),
-            label: '消息',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.perm_identity),
-            label: '我的',
-          ),
-        ],
-        currentIndex: _calculateSelectedIndex(context),
-        onTap: (int idx) => _onItemTapped(idx, context),
+      bottomNavigationBar: Visibility(
+        visible: location == HomeRoutes.root || location == UserRoutes.root,
+        child: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: '首页',
+            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.notification_important_rounded),
+            //   label: '消息',
+            // ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.perm_identity),
+              label: '我的',
+            ),
+          ],
+          currentIndex: _calculateSelectedIndex(context),
+          onTap: (int idx) => _onItemTapped(idx, context),
+        ),
       ),
     );
   }
@@ -101,11 +105,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
     if (location.startsWith(HomeRoutes.root)) {
       return 0;
     }
-    if (location.startsWith('/b')) {
+    if (location.startsWith(UserRoutes.root)) {
       return 1;
-    }
-    if (location.startsWith(UserCenterRoutes.root)) {
-      return 2;
     }
     return 0;
   }
@@ -113,13 +114,10 @@ class ScaffoldWithNavBar extends StatelessWidget {
   void _onItemTapped(int index, BuildContext context) {
     switch (index) {
       case 0:
-        GoRouter.of(context).go(HomeRoutes.root);
+        context.go(HomeRoutes.root);
         break;
       case 1:
-        GoRouter.of(context).go('/b');
-        break;
-      case 2:
-        GoRouter.of(context).go(UserCenterRoutes.root);
+        context.go(UserRoutes.root);
         break;
     }
   }

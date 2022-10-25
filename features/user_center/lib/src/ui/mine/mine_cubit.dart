@@ -5,7 +5,7 @@ import 'package:user_center/src/ui/mine/mine_state.dart';
 
 ///author: lty
 ////Time: 2022/10/25
-////Description: 
+////Description:
 
 class MineCubit extends Cubit<MineState> {
   MineCubit() : super(const MineState()) {
@@ -21,7 +21,7 @@ class MineCubit extends Cubit<MineState> {
     emit(state.copyWith(username: '${user?.userModel?.toJson()}'));
   }
 
-  void logout() {
+  void setting() {
     _authenticationRepository.logOut();
   }
 }

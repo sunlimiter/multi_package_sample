@@ -2,6 +2,7 @@ import 'package:common_dependencies/common_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:user_center/src/router/user_center_navigator.dart';
 import 'package:user_center/src/ui/mine/mine_cubit.dart';
 import 'package:user_center/src/ui/mine/mine_state.dart';
 
@@ -28,6 +29,12 @@ class MineScreen extends HookWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(_state.username),
+            ElevatedButton(
+              onPressed: () {
+                context.push('${UserRoutes.root}/${UserCenterRoutes.setting}');
+              },
+              child: const Text('设置'),
+            ),
           ],
         ),
       ),
