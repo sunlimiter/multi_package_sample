@@ -15,13 +15,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: navigatorKey,
-      onGenerateRoute: (settings) => generateRoute(
-        settings: settings,
+    return MaterialApp.router(
+      routerConfig: generateRoute(
         routes: routes,
       ),
-      builder: AuthenticationBloc.buildAuth(),
       localeResolutionCallback: localeResolutionCallback,
       supportedLocales: appSupportedLanguages,
       localizationsDelegates: localeDelegates,
@@ -29,14 +26,101 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Route<dynamic>? generateRoute({
+  GoRouter generateRoute({
     required List<RouterModule> routes,
-    required RouteSettings settings,
   }) {
-    final routesMap = <String, MaterialPageRoute>{};
+    final routesMap = <GoRoute>[];
     for (final route in routes) {
-      routesMap.addAll(route.getRoutes(settings));
+      routesMap.addAll(route.getRoutes());
     }
-    return routesMap[settings.name];
+    return GoRouter(
+      routes: <RouteBase>[
+        ShellRoute(
+          builder: (BuildContext context, GoRouterState state, Widget child) {
+            return ScaffoldWithNavBar(child: child);
+          },
+          routes: routesMap,
+        ),
+      ],
+      debugLogDiagnostics: true,
+      refreshListenable: AppInjector.I.get<AuthenticationBloc>(),
+      redirect: (context, state) {
+        final bloc = AppInjector.I.get<AuthenticationBloc>();
+        final bool signedIn = bloc.state.status == AuthenticationStatus.authenticated;
+        final bool signingIn = state.subloc == LoginRoutes.root;
+        final bool splashIn = state.subloc == SplashRoutes.root;
+        //未登录，当前页为非登录页
+        if (!signedIn && !signingIn) {
+          return LoginRoutes.root;
+        } else if (signedIn && (signingIn || splashIn)) {
+          //已登录，当前页面为登录页面/引导页
+          return HomeRoutes.root;
+        }
+        return null;
+      },
+    );
+  }
+}
+
+class ScaffoldWithNavBar extends StatelessWidget {
+  const ScaffoldWithNavBar({
+    required this.child,
+    Key? key,
+  }) : super(key: key);
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: child,
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '首页',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notification_important_rounded),
+            label: '消息',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.perm_identity),
+            label: '我的',
+          ),
+        ],
+        currentIndex: _calculateSelectedIndex(context),
+        onTap: (int idx) => _onItemTapped(idx, context),
+      ),
+    );
+  }
+
+  static int _calculateSelectedIndex(BuildContext context) {
+    final GoRouter route = GoRouter.of(context);
+    final String location = route.location;
+    if (location.startsWith(HomeRoutes.root)) {
+      return 0;
+    }
+    if (location.startsWith('/b')) {
+      return 1;
+    }
+    if (location.startsWith(UserCenterRoutes.root)) {
+      return 2;
+    }
+    return 0;
+  }
+
+  void _onItemTapped(int index, BuildContext context) {
+    switch (index) {
+      case 0:
+        GoRouter.of(context).go(HomeRoutes.root);
+        break;
+      case 1:
+        GoRouter.of(context).go('/b');
+        break;
+      case 2:
+        GoRouter.of(context).go(UserCenterRoutes.root);
+        break;
+    }
   }
 }

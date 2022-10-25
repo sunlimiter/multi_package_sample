@@ -12,6 +12,7 @@ import 'package:health/di/app_component.dart';
 import 'package:health/resolvers/app_resolver.dart';
 import 'package:health/resolvers/library_resolver.dart';
 import 'package:splash/go_splash.dart';
+import 'package:user_center/user_center.dart';
 
 abstract class AppStart {
   final BuildConfig buildConfig;
@@ -28,6 +29,7 @@ abstract class AppStart {
     SplashResolver(),
     HomeResolver(),
     LoginResolver(),
+    UserCenterResolver(),
 
     // App
     AppResolver(),

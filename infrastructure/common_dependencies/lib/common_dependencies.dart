@@ -2,6 +2,7 @@ library common_dependencies;
 
 export 'package:intl/intl.dart';
 export 'package:navigator/navigator.dart';
+export 'package:authentication/authentication.dart';
 export 'package:dio/dio.dart';
 export 'package:package_info_plus/package_info_plus.dart';
 export 'package:equatable/equatable.dart';

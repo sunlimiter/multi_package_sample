@@ -16,6 +16,10 @@ class HomeLocalization extends BaseLocalization {
   String get title {
     return tr('home_screen.title');
   }
+
+  String get logout {
+    return tr('home_screen.logout');
+  }
 }
 
 class HomeLocalizationDelegate extends LocalizationsDelegate<HomeLocalization> {

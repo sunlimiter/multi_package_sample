@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 
 class AppHomeNavigator with AppNavigator implements HomeNavigator {
   @override
-  void navigateToRoot(BuildContext context) => navigateTo(
+  void navigateToRoot(BuildContext context) => replace(
         context,
         HomeRoutes.root,
-        pushAndReplace: true,
       );
 }

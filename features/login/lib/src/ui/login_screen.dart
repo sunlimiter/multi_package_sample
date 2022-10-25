@@ -6,6 +6,8 @@ import 'package:login/src/ui/cubit/login_cubit.dart';
 import 'cubit/login_state.dart';
 
 class LoginScreen extends HookWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final _cubit = useBloc<LoginCubit>();

@@ -13,6 +13,8 @@ dependencies:
 
   #路由导航
   navigator: 0.0.1
+  #鉴权
+  authentication: 0.0.1
   ## Packages
   flutter_bloc: ^8.1.1
   intl: ^0.17.0

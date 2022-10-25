@@ -1,17 +1,16 @@
 name: health
-
+repository: https://github.com/sunlimiter/multi_package_sample
 
 packages:
   - app/*
   - infrastructure/**
   - features/**
 
-
 sdkPath: .fvm/flutter_sdk
 command:
   version:
     # Generate commit links in package changelogs.
-#    linkToCommits: true
+    linkToCommits: true
     # # Only allow versioning to happen on main branch.
     # branch: master
     # Additionally build a changelog at the root of the workspace.
@@ -59,13 +58,9 @@ scripts:
     melos exec -c 6 -- "flutter pub run pubspec_dependency_sorter"
 
   app-run:
-    description: '执行flutter run 命令'
+    description: "执行flutter run 命令"
     run: chmod 777 flutter_tool.sh && ./flutter_tool.sh run --t=lib/main.dart --model=qa
 
   app-build-apk:
-    description: '执行flutter build 命令'
+    description: "执行flutter build 命令"
     run: chmod 777 flutter_tool.sh && ./flutter_tool.sh build apk --t=lib/main.dart --model=qa
-
-environment:
-  sdk: '>=2.18.0 <3.0.0'
-  flutter: ">=1.17.0"

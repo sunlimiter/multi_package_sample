@@ -5,10 +5,10 @@ import 'package:splash/src/ui/splash_screen.dart';
 
 class SplashRouterModule implements RouterModule {
   @override
-  Map<String, MaterialPageRoute> getRoutes(RouteSettings settings) => <String, MaterialPageRoute>{
-        SplashRoutes.root: MaterialPageRoute(
-          builder: (_) => const SplashScreen(),
-          settings: settings,
+  List<GoRoute> getRoutes() => <GoRoute>[
+        GoRoute(
+          path: SplashRoutes.root,
+          builder: (BuildContext context, GoRouterState state) => const SplashScreen(),
         ),
-      };
+      ];
 }

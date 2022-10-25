@@ -1,6 +1,6 @@
 // ignore_for_file: one_member_abstracts
 
-import 'package:flutter/material.dart';
+import 'package:common_dependencies/common_dependencies.dart';
 
 class RouteMissingArgsFailure implements Exception {}
 
@@ -21,5 +21,5 @@ T? tryToGetArgsOrIgnore<T>(Object? arguments) {
 }
 
 abstract class RouterModule {
-  Map<String, MaterialPageRoute> getRoutes(RouteSettings settings);
+  List<GoRoute> getRoutes();
 }

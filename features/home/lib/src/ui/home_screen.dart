@@ -1,19 +1,17 @@
-import 'package:authentication/authentication.dart';
-import 'package:core/core.dart';
+import 'package:common_dependencies/common_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:home/src/localization/home_localization.dart';
-import 'package:common_dependencies/common_dependencies.dart';
+import 'package:home/src/ui/cubit/home_cubit.dart';
+import 'package:home/src/ui/cubit/home_state.dart';
 
 class HomeScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final bloc = useMemoized(() {
-      AuthenticationBloc _bloc = AppInjector.I.get();
-      return _bloc;
-    });
-
-    final _context = useContext();
-    final _intl = HomeLocalization.of(_context);
+    final _cubit = useBloc<HomeCubit>();
+    final HomeState _state = useBlocBuilder<HomeCubit, HomeState>(
+      _cubit,
+    );
+    final _intl = HomeLocalization.of(context);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Home')),
@@ -22,15 +20,10 @@ class HomeScreen extends HookWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text('${_intl?.title}'),
-            Builder(
-              builder: (context) {
-                final userId = bloc.state.user.userModel?.userInfo?.userId;
-                return Text('UserID: $userId');
-              },
-            ),
+            Text(_state.username),
             ElevatedButton(
-              onPressed: bloc.logout,
-              child: const Text('Logout'),
+              onPressed: _cubit.logout,
+              child: Text('${_intl?.logout}'),
             ),
           ],
         ),

@@ -12,7 +12,7 @@ import 'user.dart';
 
 part 'authentication_state.dart';
 
-class AuthenticationBloc extends Cubit<AuthenticationState> {
+class AuthenticationBloc extends Cubit<AuthenticationState> with ChangeNotifier {
   AuthenticationBloc() : super(const AuthenticationState.unknown()) {
     _authenticationStatusSubscription = _authenticationRepository.status.listen(
       _mapAuthenticationStatusChangedToState,
@@ -20,8 +20,6 @@ class AuthenticationBloc extends Cubit<AuthenticationState> {
   }
 
   final AuthenticationRepository _authenticationRepository = AppInjector.I.get();
-
-  NavigatorState? get navigator => navigatorKey.currentState;
 
   StreamSubscription<AuthenticationStatus>? _authenticationStatusSubscription;
 
@@ -59,39 +57,6 @@ class AuthenticationBloc extends Cubit<AuthenticationState> {
         emit(const AuthenticationState.unknown());
         break;
     }
-  }
-
-  static TransitionBuilder buildAuth() {
-    return (context, child) {
-      return HookBuilder(
-        builder: (_) {
-          final bloc = useBloc<AuthenticationBloc>();
-          useBlocListener<AuthenticationBloc, AuthenticationState>(
-            bloc,
-            (_, AuthenticationState? value, context) {
-              final LoginNavigator _loginNavigator = AppInjector.I.get();
-              final HomeNavigator _homeNavigator = AppInjector.I.get();
-              switch (value?.status) {
-                case AuthenticationStatus.unauthenticated:
-                  if (bloc.navigator?.context != null) {
-                    _loginNavigator.navigateToRoot(bloc.navigator!.context);
-                  }
-                  break;
-                case AuthenticationStatus.authenticated:
-                  if (bloc.navigator?.context != null) {
-                    _homeNavigator.navigateToRoot(bloc.navigator!.context);
-                  }
-                  break;
-                default:
-                  break;
-              }
-            },
-            listenWhen: (state) => true,
-          );
-
-          return child ?? Container();
-        },
-      );
-    };
+    notifyListeners();
   }
 }

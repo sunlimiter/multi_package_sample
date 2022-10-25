@@ -1,5 +1,6 @@
 {
     "home_screen": {
-        "title": "Welcome back user!"
+        "title": "Welcome back user!",
+        "logout": "logout"
     }
 }

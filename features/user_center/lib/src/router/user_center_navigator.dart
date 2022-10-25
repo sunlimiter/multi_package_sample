@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 ///author: lty
 ////Time: 2022/10/25
 ////Description:
-class AppSignInNavigator with AppNavigator implements SplashNavigator {
+
+class UserCenterNavigator with AppNavigator implements UserNavigator {
   @override
-  void navigateToSplash(BuildContext context) => replace(context, SplashRoutes.root);
+  void navigateToUserCenter(BuildContext context) => replace(context, UserCenterRoutes.root);
 }

@@ -5,10 +5,10 @@ import 'package:login/src/ui/login_screen.dart';
 
 class LoginRouterModule implements RouterModule {
   @override
-  Map<String, MaterialPageRoute> getRoutes(RouteSettings settings) => <String, MaterialPageRoute>{
-        LoginRoutes.root: MaterialPageRoute(
-          builder: (_) => LoginScreen(),
-          settings: settings,
+  List<GoRoute> getRoutes() => <GoRoute>[
+        GoRoute(
+          path: LoginRoutes.root,
+          builder: (BuildContext context, GoRouterState state) => const LoginScreen(),
         ),
-      };
+      ];
 }
