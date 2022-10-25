@@ -1,4 +1,3 @@
-import 'package:authentication/authentication.dart';
 import 'package:common_dependencies/common_dependencies.dart';
 import 'package:core/core.dart';
 import 'package:login/src/models/models.dart';

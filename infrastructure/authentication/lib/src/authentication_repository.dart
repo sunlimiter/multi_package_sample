@@ -6,8 +6,6 @@ import 'dart:convert';
 
 import 'package:common_dependencies/common_dependencies.dart';
 
-import 'user.dart';
-
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
 abstract class AuthenticationRepository {

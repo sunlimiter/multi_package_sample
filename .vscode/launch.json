@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "app",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "cwd": "app",
+            "args": [
+                "--dart-define",
+                "analyticsLogs=true",
+                "--dart-define",
+                "baseUrl=http://apigw.qa.91jkys.com",
+                "--dart-define",
+                "debug=true",
+                "--dart-define",
+                "appName=\"智云健康QA\""
+            ]
+        }
+    ]
+}

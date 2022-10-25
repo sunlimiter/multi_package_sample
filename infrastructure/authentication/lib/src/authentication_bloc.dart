@@ -7,9 +7,6 @@ import 'package:common_dependencies/common_dependencies.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import 'authentication_repository.dart';
-import 'user.dart';
-
 part 'authentication_state.dart';
 
 class AuthenticationBloc extends Cubit<AuthenticationState> with ChangeNotifier {

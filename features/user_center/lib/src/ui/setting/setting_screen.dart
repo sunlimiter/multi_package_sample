@@ -1,4 +1,3 @@
-import 'package:common_dependencies/common_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:user_center/src/widget/item_card.dart';
 
@@ -56,9 +55,7 @@ class SettingScreen extends StatelessWidget {
                       title: 'Settings Item 01',
                       color: (brightness == Brightness.light) ? Colors.white : Theme.of(context).scaffoldBackgroundColor,
                       rightWidget: null,
-                      callback: () {
-                        print('Tap Settings Item 01');
-                      },
+                      callback: () {},
                     ),
                     const SizedBox(
                       height: 40,
@@ -77,49 +74,37 @@ class SettingScreen extends StatelessWidget {
                       title: 'Settings Item 02',
                       color: (brightness == Brightness.light) ? Colors.white : Theme.of(context).scaffoldBackgroundColor,
                       rightWidget: _arrow(),
-                      callback: () {
-                        print('Tap Settings Item 02');
-                      },
+                      callback: () {},
                     ),
                     ItemCard(
                       title: 'Settings Item 03',
                       color: (brightness == Brightness.light) ? Colors.white : Theme.of(context).scaffoldBackgroundColor,
                       rightWidget: _arrow(),
-                      callback: () {
-                        print('Tap Settings Item 03');
-                      },
+                      callback: () {},
                     ),
                     ItemCard(
                       title: 'Settings Item 04',
                       color: (brightness == Brightness.light) ? Colors.white : Theme.of(context).scaffoldBackgroundColor,
                       rightWidget: _arrow(),
-                      callback: () {
-                        print('Tap Settings Item 04');
-                      },
+                      callback: () {},
                     ),
                     ItemCard(
                       title: 'Settings Item 05',
                       color: (brightness == Brightness.light) ? Colors.white : Theme.of(context).scaffoldBackgroundColor,
                       rightWidget: null,
-                      callback: () {
-                        print('Tap Settings Item 05');
-                      },
+                      callback: () {},
                     ),
                     ItemCard(
                       title: 'Settings Item 06',
                       color: (brightness == Brightness.light) ? Colors.white : Theme.of(context).scaffoldBackgroundColor,
                       rightWidget: null,
-                      callback: () {
-                        print('Tap Settings Item 06');
-                      },
+                      callback: () {},
                     ),
                     ItemCard(
                       title: 'Settings Item 07',
                       color: (brightness == Brightness.light) ? Colors.white : Theme.of(context).scaffoldBackgroundColor,
                       rightWidget: null,
-                      callback: () {
-                        print('Tap Settings Item 07');
-                      },
+                      callback: () {},
                     ),
                     const SizedBox(
                       height: 40,
@@ -128,16 +113,12 @@ class SettingScreen extends StatelessWidget {
                       title: 'Settings Item 08',
                       color: (brightness == Brightness.light) ? Colors.white : Theme.of(context).scaffoldBackgroundColor,
                       rightWidget: null,
-                      callback: () {
-                        print('Tap Settings Item 08');
-                      },
+                      callback: () {},
                     ),
                     ItemCard(
                       title: 'Settings Item 09',
                       color: (brightness == Brightness.light) ? Colors.white : Theme.of(context).scaffoldBackgroundColor,
-                      callback: () {
-                        print('Tap Settings Item 09');
-                      },
+                      callback: () {},
                       textColor: Colors.red,
                     ),
                     ItemCard(

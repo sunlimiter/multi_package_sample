@@ -1,7 +1,5 @@
 import 'package:common_dependencies/common_dependencies.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:user_center/src/router/user_center_navigator.dart';
 import 'package:user_center/src/ui/mine/mine_cubit.dart';
 import 'package:user_center/src/ui/mine/mine_state.dart';
@@ -14,9 +12,9 @@ class MineScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _cubit = useBloc<MineCubit>();
-    final MineState _state = useBlocBuilder<MineCubit, MineState>(
-      _cubit,
+    final cubit = useBloc<MineCubit>();
+    final MineState state = useBlocBuilder<MineCubit, MineState>(
+      cubit,
     );
 
     return Scaffold(
@@ -28,7 +26,7 @@ class MineScreen extends HookWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text(_state.username),
+            Text(state.username),
             ElevatedButton(
               onPressed: () {
                 context.push('${UserRoutes.root}/${UserCenterRoutes.setting}');
