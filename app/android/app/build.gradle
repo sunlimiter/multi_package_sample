@@ -26,15 +26,18 @@ if (flutterVersionName == null) {
 // Flutter v1.17 Output: APP_NAME=example_app_local,USER_NAME=WzDTj
 // Flutter v1.20 Output: APP_NAME%3Dexample_app_local,USER_NAME%3DWzDTj
 // 解析该字符串
+// https://medium.com/@tatsu.ukraine/flutter-2-2-dart-defines-and-breaking-changes-here-we-go-again-ce40cfea74fd
 def dartDefines = []
 if (project.hasProperty('dart-defines')) {
     println(project.property('dart-defines'))
     dartDefines = project.property('dart-defines')
             .split(',')
             .collectEntries { entry ->
-                def pair = URLDecoder.decode(entry, StandardCharsets.UTF_8.toString()).split('=')
+                // def pair = URLDecoder.decode(entry, StandardCharsets.UTF_8.toString()).split('=')
+                def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
                 [(pair.first()): pair.last()]
             }
+    println("dartDefines==>"+dartDefines)
 }
 
 apply plugin: 'com.android.application'
