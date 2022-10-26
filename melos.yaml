@@ -6,7 +6,7 @@ packages:
   - infrastructure/**
   - features/**
 
-sdkPath: .fvm/flutter_sdk
+# sdkPath: .fvm/flutter_sdk
 command:
   version:
     # Generate commit links in package changelogs.

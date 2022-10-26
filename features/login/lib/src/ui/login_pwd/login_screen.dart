@@ -267,7 +267,7 @@ class _UsernameInput extends HookWidget {
         hintText: '${_intl?.accountHint}',
         hintStyle: const TextStyle(color: Colors.grey),
         border: InputBorder.none,
-        errorText: state.username.invalid ? 'invalid username' : null,
+        errorText: state.username.invalid ? '请输入正确的手机号' : null,
       ),
     );
   }
@@ -293,7 +293,7 @@ class _PasswordInput extends HookWidget {
         hintText: '${_intl?.passwordHint}',
         hintStyle: const TextStyle(color: Colors.grey),
         border: InputBorder.none,
-        errorText: state.password.invalid ? 'invalid password' : null,
+        errorText: state.password.invalid ? '请输入正确的密码' : null,
       ),
     );
   }
