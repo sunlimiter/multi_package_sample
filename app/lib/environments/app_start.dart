@@ -7,10 +7,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:home/home.dart';
 import 'package:login/login.dart';
-import 'package:health/app/my_app.dart';
-import 'package:health/di/app_component.dart';
-import 'package:health/resolvers/app_resolver.dart';
-import 'package:health/resolvers/library_resolver.dart';
+import 'package:componentized/app/my_app.dart';
+import 'package:componentized/di/app_component.dart';
+import 'package:componentized/resolvers/app_resolver.dart';
+import 'package:componentized/resolvers/library_resolver.dart';
 import 'package:splash/go_splash.dart';
 import 'package:user_center/user_center.dart';
 

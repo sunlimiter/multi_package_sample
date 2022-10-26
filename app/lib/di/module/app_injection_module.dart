@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:authentication/authentication.dart';
 import 'package:core/core.dart';
-import 'package:health/analytics/app_analytics_receiver.dart';
+import 'package:componentized/analytics/app_analytics_receiver.dart';
 
 class AppInjectionModule implements InjectionModule {
   @override

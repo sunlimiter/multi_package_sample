@@ -1,4 +1,4 @@
-name: health
+name: multi_package_sample
 repository: https://github.com/sunlimiter/multi_package_sample
 
 packages:

@@ -1,5 +1,5 @@
-import 'package:health/environments/app_build_config.dart';
-import 'package:health/environments/app_start.dart';
+import 'package:componentized/environments/app_build_config.dart';
+import 'package:componentized/environments/app_start.dart';
 
 ///author: lty
 ///Time: 2022/06/10
