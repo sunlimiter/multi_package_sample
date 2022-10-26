@@ -1,15 +1,20 @@
 abstract class BuildConfig {
   Map<String, dynamic> get configs;
 
-  bool? getBool(String key) => _getValueWithKeyOrThrowInCaseOfDifferentType<bool>(key);
+  bool? getBool(String key) =>
+      _getValueWithKeyOrThrowInCaseOfDifferentType<bool>(key);
 
-  double? getDouble(String key) => _getValueWithKeyOrThrowInCaseOfDifferentType<double>(key);
+  double? getDouble(String key) =>
+      _getValueWithKeyOrThrowInCaseOfDifferentType<double>(key);
 
-  int? getInt(String key) => _getValueWithKeyOrThrowInCaseOfDifferentType<int>(key);
+  int? getInt(String key) =>
+      _getValueWithKeyOrThrowInCaseOfDifferentType<int>(key);
 
-  String? getString(String key) => _getValueWithKeyOrThrowInCaseOfDifferentType<String>(key);
+  String? getString(String key) =>
+      _getValueWithKeyOrThrowInCaseOfDifferentType<String>(key);
 
-  T? getObject<T>(String key) => _getValueWithKeyOrThrowInCaseOfDifferentType<T>(key);
+  T? getObject<T>(String key) =>
+      _getValueWithKeyOrThrowInCaseOfDifferentType<T>(key);
 
   T? _getValueWithKeyOrThrowInCaseOfDifferentType<T>(String key) {
     if (configs.isNotEmpty && configs.containsKey(key)) {

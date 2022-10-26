@@ -10,7 +10,7 @@ class User extends Equatable {
   const User({this.userModel});
 
   @override
-  List<Object?> get props => [userModel?.userInfo?.userId, userModel?.token];
+  List<Object?> get props => [userModel?.userInfo?.userId, userModel?.accessToken];
 
   static const empty = User();
 

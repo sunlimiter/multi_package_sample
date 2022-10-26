@@ -11,6 +11,6 @@ class Password extends FormzInput<String, PasswordValidationError> {
 
   @override
   PasswordValidationError? validator(String? value) {
-    return value != null ? null : PasswordValidationError.empty;
+    return (value != null && value.isNotEmpty) ? null : PasswordValidationError.empty;
   }
 }

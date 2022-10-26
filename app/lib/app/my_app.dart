@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class MyApp extends StatelessWidget {
   final List<LocalizationsDelegate> localeDelegates;
   final List<RouterModule> routes;
+  final String title;
 
   const MyApp({
     Key? key,
     required this.localeDelegates,
     required this.routes,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
       routerConfig: generateRoute(
         routes: routes,
       ),
+      title: title,
       localeResolutionCallback: localeResolutionCallback,
       supportedLocales: appSupportedLanguages,
       localizationsDelegates: localeDelegates,

@@ -39,7 +39,7 @@ class LoginCubit extends Cubit<LoginState> {
     if (state.status.isValidated) {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
       try {
-        var result = await _httpClient.post('/api/drugstore/1.0/user_name_login', body: {'userName': state.username.value, 'password': state.password.value});
+        var result = await _httpClient.post('/api/loginByPwd', body: {'userName': state.username.value, 'password': state.password.value});
         if (result.ok) {
           await _authenticationRepository.logIn(User.fromJson(result.result));
           emit(state.copyWith(status: FormzStatus.submissionSuccess));

@@ -6,7 +6,8 @@
 import 'package:core/core.dart';
 
 const analyticsLogs = bool.fromEnvironment('analyticsLogs');
-const baseUrl = String.fromEnvironment('baseUrl', defaultValue: 'https://apigw.91jkys.com');
+const appName = String.fromEnvironment('组件化');
+const baseUrl = String.fromEnvironment('baseUrl', defaultValue: 'https://www.fastmock.site/mock/a7a08e854dfabdb56275bfec558a8be3');
 const debug = bool.fromEnvironment('debug');
 
 class AppBuildConfig extends BuildConfig {
@@ -15,5 +16,6 @@ class AppBuildConfig extends BuildConfig {
     'analyticsLogs': analyticsLogs,
     'baseUrl': baseUrl,
     'debug': debug,
+    'appName': appName,
   };
 }

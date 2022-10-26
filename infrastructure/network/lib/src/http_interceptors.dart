@@ -5,72 +5,46 @@ import 'package:core/core.dart';
 
 ///author: lty
 ///Time: 2020/4/2
-///Description:
-class HttpInterceptors extends InterceptorsWrapper {
+///Description: 接口请求公共参数&登录失效处理
+///刷新token逻辑参考：https://gist.github.com/TimurMukhortov/a1c9819e3779015e54bc3964b7d2308a
+class HttpInterceptors extends QueuedInterceptorsWrapper {
   String? appInfo;
 
-  String getHeaderAppInfo(PackageInfo? packageInfo) {
-    var appInfo = '';
-    appInfo = 'zhiyun_patient;version=${packageInfo?.version};platform=';
+  Future<String> getHeaderAppInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    var os = 'flutter';
     if (Platform.isAndroid) {
-      appInfo = '${appInfo}ANDROID';
+      os = 'android';
     } else if (Platform.isIOS) {
-      appInfo = '${appInfo}IOS';
+      os = 'ios';
     }
-    return appInfo;
+    return 'version=${packageInfo.version};platform=$os';
   }
 
   @override
-  Future onRequest(
+  Future<void> onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    if (appInfo == null) {
-      PackageInfo packageInfo = await PackageInfo.fromPlatform();
-      appInfo = getHeaderAppInfo(packageInfo);
-    }
+    appInfo ??= await getHeaderAppInfo();
     var user = await AppInjector.I.get<AuthenticationRepository>().getUser();
+    var token = user?.userModel?.accessToken ?? '';
+    if (token.isNotEmpty) {
+      token = 'Bearer $token';
+    }
 
     options.headers.addAll({
-      'Accept': 'application/json; charset=UTF-8',
       'App-Info': appInfo,
-      'Device-Id': '',
-      'Token': user?.userModel?.token ?? '',
+      'Authorization': token,
     });
-    return super.onRequest(options, handler);
+    super.onRequest(options, handler);
   }
 
-// DioError resultError(DioError e)  {
-//   Response errorResponse;
-//   if (e.response != null) {
-//     errorResponse = e.response;
-//   } else {
-//     errorResponse = Response(statusCode: 666, data: {'ok': false},requestOptions:e.requestOptions);
-//   }
-//   if (errorResponse.statusCode == 401) {
-//     AppUtils.doAppLogout('http_api 401');
-//   }
-//   DioError dioError = DioError(requestOptions:e.requestOptions,response: errorResponse,type:e.type,error:e.error);
-//
-//   return dioError;
-// }
-//
-// ///获取授权token
-// Future<String> getAuthorization() async {
-//   String token = UserStore.to.token;
-//   if (token == null) {
-//     return "anonymous";
-//   } else {
-//     return token;
-//   }
-// }
-//
-// Future<String> getUserId() async {
-//   int userId = UserStore.to.user?.userInfo?.userId;
-//   if (userId == null) {
-//     return "-1000";
-//   } else {
-//     return "$userId";
-//   }
-// }
+  @override
+  void onError(DioError err, ErrorInterceptorHandler handler) {
+    if (err.response?.statusCode == 401) {
+      AppInjector.I.get<AuthenticationRepository>().logOut();
+    }
+    super.onError(err, handler);
+  }
 }

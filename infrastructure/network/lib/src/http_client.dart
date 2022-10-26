@@ -69,7 +69,6 @@ class HttpClientImpl implements HttpClient {
     if (httpInterceptors != null) {
       dio.interceptors.add(httpInterceptors!);
       dio.interceptors.add(LogInterceptor(responseBody: true)); //开启请求日志
-
     }
   }
 
@@ -128,18 +127,15 @@ class HttpClientImpl implements HttpClient {
     Map<String, dynamic>? headers,
   }) async {
     try {
-      ///ZyHttp 默认设置了content-type ，会导致阿里云OSS 文件签名校验失败
       var response = await dio.download(url, savePath);
-      // if (response == null) {
-      //   print("文件下载失败：");
-      //   return false;
-      // }
       if (response.data is ResponseBody) {
         var req = response.data as ResponseBody;
         if (req.statusCode == 200) {
           return true;
         } else {
-          debugPrint('文件下载失败：statusCode=${req.statusCode} statusMessage=${req.statusMessage}');
+          debugPrint(
+            '文件下载失败:statusCode=${req.statusCode} statusMessage=${req.statusMessage}',
+          );
         }
       }
     } catch (e) {
@@ -154,8 +150,6 @@ class HttpClientImpl implements HttpClient {
     Map<String, dynamic>? headers,
     Map<String, dynamic>? body,
   }) async {
-    // final response = await ZyHttp.delete(baseUrl + url).addParams(body).addHeaders(headers == null ? {} : headers.map((key, value) => MapEntry(key.toString(), value))).request();
-    // return ResultData.fromJson(response.data);
     Response response = await dio.delete(
       url,
       data: body ?? {},

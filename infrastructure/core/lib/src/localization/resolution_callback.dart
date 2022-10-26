@@ -2,7 +2,10 @@ import 'package:flutter/widgets.dart';
 
 ///local: 当前的当前的系统语言设置
 ///supportedLocales: 为当前应用支持的locale列表，是开发者在MaterialApp中通过supportedLocales属性注册的
-Locale? localeResolutionCallback(Locale? locale, Iterable<Locale> supportedLocales) {
+Locale? localeResolutionCallback(
+  Locale? locale,
+  Iterable<Locale> supportedLocales,
+) {
   final fullMatch = getSupportedLocaleForLanguageAndCountryCode(supportedLocales, locale);
   if (fullMatch != null) {
     return fullMatch;

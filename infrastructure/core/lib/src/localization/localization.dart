@@ -63,7 +63,9 @@ class BaseLocalization {
     }
 
     if (message == null) {
-      debugPrint('WARN [LOCALIZATION]: Could not find valid localization string for key $key, $locale');
+      debugPrint(
+        'WARN [LOCALIZATION]: Could not find valid localization string for key $key, $locale',
+      );
       return key;
     }
 
@@ -87,7 +89,9 @@ class BaseLocalization {
   String _loadPluralizedMessage(String key, num howMany) {
     final other = _loadMessage('$key.other');
     if (other == null) {
-      throw Exception('[LOCALIZATION]: When using [pluralCount], `$key.other` is required');
+      throw Exception(
+        '[LOCALIZATION]: When using [pluralCount], `$key.other` is required',
+      );
     }
     return Intl.plural(
       howMany,

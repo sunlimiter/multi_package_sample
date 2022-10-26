@@ -1,6 +1,10 @@
 {
     "login_screen": {
-        "title": "Welcome, press SSO to authenticate",
-        "action": "SSO"
+        "title": "Welcome Back",
+        "login": "Login",
+        "account_hint":"Please enter account",
+        "password_hint":"Please enter password",
+        "other_login_type":"Continue with social media",
+        "forgot_pwd":"Forgot Password?"
     }
 }

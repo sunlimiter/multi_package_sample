@@ -21,14 +21,18 @@ class SettingScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('设置'),
         centerTitle: true,
-        // leading: IconButton(
-        //   icon: const Icon(Icons.arrow_back),
-        //   onPressed: () {
-        //     if (context.canPop()) {
-        //       context.pop();
-        //     }
-        //   },
-        // ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              colors: [
+                Colors.orange.shade900,
+                Colors.orange.shade800,
+                Colors.orange.shade400,
+              ],
+            ),
+          ),
+        ),
       ),
       body: Container(
         color: (brightness == Brightness.light) ? const Color(0xFFF7F7F7) : const Color(0xFF000000),

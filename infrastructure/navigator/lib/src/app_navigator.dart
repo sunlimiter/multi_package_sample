@@ -47,7 +47,8 @@ mixin AppNavigator {
   }
 
   /// Navigate to a location.
-  void go(BuildContext context, String location, {Object? extra}) => context.go(location, extra: extra);
+  void go(BuildContext context, String location, {Object? extra}) =>
+      context.go(location, extra: extra);
 
   /// Navigate to a named route.
   void goNamed(
@@ -64,7 +65,8 @@ mixin AppNavigator {
         extra: extra,
       );
 
-  void push(BuildContext context, String location, {Object? extra}) => context.push(location, extra: extra);
+  void push(BuildContext context, String location, {Object? extra}) =>
+      context.push(location, extra: extra);
 
   void pushNamed(
     BuildContext context,
@@ -80,7 +82,8 @@ mixin AppNavigator {
         extra: extra,
       );
 
-  void replace(BuildContext context, String location, {Object? extra}) => context.replace(location, extra: extra);
+  void replace(BuildContext context, String location, {Object? extra}) =>
+      context.replace(location, extra: extra);
 
   void replaceNamed(
     BuildContext context,

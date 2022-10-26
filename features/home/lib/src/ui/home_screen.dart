@@ -14,7 +14,22 @@ class HomeScreen extends HookWidget {
     final _intl = HomeLocalization.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      appBar: AppBar(
+        title: const Text('Home'),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              colors: [
+                Colors.orange.shade900,
+                Colors.orange.shade800,
+                Colors.orange.shade400,
+              ],
+            ),
+          ),
+        ),
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

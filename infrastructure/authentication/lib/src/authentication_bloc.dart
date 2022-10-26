@@ -40,7 +40,9 @@ class AuthenticationBloc extends Cubit<AuthenticationState> with ChangeNotifier 
     }
   }
 
-  Future<void> _mapAuthenticationStatusChangedToState(AuthenticationStatus status) async {
+  Future<void> _mapAuthenticationStatusChangedToState(
+    AuthenticationStatus status,
+  ) async {
     switch (status) {
       case AuthenticationStatus.unauthenticated:
         emit(const AuthenticationState.unauthenticated());

@@ -21,6 +21,18 @@ class MineScreen extends HookWidget {
       appBar: AppBar(
         title: const Text('我的'),
         centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              colors: [
+                Colors.orange.shade900,
+                Colors.orange.shade800,
+                Colors.orange.shade400,
+              ],
+            ),
+          ),
+        ),
       ),
       body: Center(
         child: Column(

@@ -76,6 +76,7 @@ abstract class AppStart {
             child: MyApp(
               routes: routerModules,
               localeDelegates: delegates,
+              title: buildConfig.getString('appName') ?? '',
             ),
           ),
         );

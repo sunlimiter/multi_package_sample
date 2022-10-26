@@ -12,6 +12,30 @@ class LoginLocalization extends BaseLocalization {
   final Locale appLocale;
 
   static LoginLocalization? of(BuildContext context) => Localizations.of<LoginLocalization>(context, LoginLocalization);
+
+  String get title {
+    return tr('login_screen.title');
+  }
+
+  String get login {
+    return tr('login_screen.login');
+  }
+
+  String get forgotPwd {
+    return tr('login_screen.forgot_pwd');
+  }
+
+  String get accountHint {
+    return tr('login_screen.account_hint');
+  }
+
+  String get passwordHint {
+    return tr('login_screen.password_hint');
+  }
+
+  String get otherLoginType {
+    return tr('login_screen.other_login_type');
+  }
 }
 
 class LoginLocalizationDelegate extends LocalizationsDelegate<LoginLocalization> {
