@@ -21,6 +21,8 @@ class MyApp extends StatelessWidget {
         routes: routes,
       ),
       title: title,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       localeResolutionCallback: localeResolutionCallback,
       supportedLocales: appSupportedLanguages,
       localizationsDelegates: localeDelegates,
