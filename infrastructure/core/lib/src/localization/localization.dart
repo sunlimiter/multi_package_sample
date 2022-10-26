@@ -42,10 +42,8 @@ class BaseLocalization {
       final canonicalLocaleName = Intl.canonicalizedLocale(localeName);
       Intl.defaultLocale = canonicalLocaleName;
     } catch (exception, stacktrace) {
-      // ignore: avoid_print
-      print(exception);
-      // ignore: avoid_print
-      print(stacktrace);
+      debugPrint('$exception');
+      debugPrint('$stacktrace');
     }
   }
 
@@ -65,9 +63,7 @@ class BaseLocalization {
     }
 
     if (message == null) {
-      // ignore: avoid_print
-      print('WARN [LOCALIZATION]: Could not find valid localization '
-          'string for key $key, $locale');
+      debugPrint('WARN [LOCALIZATION]: Could not find valid localization string for key $key, $locale');
       return key;
     }
 
@@ -116,8 +112,7 @@ class BaseLocalization {
 
   void _print(Object obj) {
     if (debugLogs) {
-      // ignore: avoid_print
-      print(obj);
+      debugPrint('$obj');
     }
   }
 }
