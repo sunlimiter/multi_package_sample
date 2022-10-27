@@ -1,6 +1,6 @@
 {
-    // "dart.flutterSdkPath": "/Users/litianyi/fvm/versions/3.3.0",
-    // "dart.sdkPath": ".fvm/flutter_sdk/bin/dart",
+    "dart.flutterSdkPath": "/Users/litianyi/fvm/versions/3.3.0",
+    "dart.sdkPath": ".fvm/flutter_sdk/bin/dart",
     "dart.lineLength": 180,
     "[dart]": {
         "editor.rulers": [
