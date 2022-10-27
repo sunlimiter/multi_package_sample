@@ -1,0 +1,10 @@
+{
+    "login_screen": {
+        "title": "欢迎回来",
+        "login": "登录",
+        "account_hint":"请输入账号",
+        "password_hint":"请输入密码",
+        "other_login_type":"使用其他账号登录",
+        "forgot_pwd":"忘记密码?"
+    }
+}

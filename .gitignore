@@ -1,0 +1,9 @@
+/.idea
+*.iml
+pubspec_overrides.yaml
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# "JSON to Dart Model" generator tracker files locations.
+/.json_models/
+models.jsonc

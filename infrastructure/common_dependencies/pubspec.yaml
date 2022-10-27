@@ -1,0 +1,42 @@
+name: common_dependencies
+description: This package aims to provide common dependencies between modules
+publish_to: none
+version: 0.0.1
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #路由导航
+  navigator: 0.0.1
+  #鉴权
+  authentication: 0.0.1
+  ## Packages
+  flutter_bloc: ^8.1.1
+  intl: ^0.17.0
+  package_info_plus: ^3.0.1
+  dio: ^4.0.6
+  #数据比较
+  equatable: ^2.0.5
+  #输入校验
+  formz: ^0.4.1
+  #数据存储
+  shared_preferences: ^2.0.15
+  # widget管理
+  flutter_hooks: ^0.18.5+1
+  hooked_bloc: ^1.2.1
+  bloc: ^8.1.0
+  #toast
+  fluttertoast: ^8.1.1
+  #路由
+  go_router: ^5.1.1
+  path: ^1.8.2
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:

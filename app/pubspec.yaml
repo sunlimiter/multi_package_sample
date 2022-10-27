@@ -1,0 +1,35 @@
+name: componentized
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+  home: 0.0.1
+  login: 0.0.1
+  splash: 0.0.1
+  common_dependencies: 0.0.1
+  core: 0.0.1
+  network: 0.0.1
+  authentication: 0.0.1
+  user_center: 0.0.1
+
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+

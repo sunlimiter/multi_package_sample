@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "app",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "cwd": "app",
+            "args": [
+                "--dart-define",
+                "analyticsLogs=true",
+                "--dart-define",
+                "baseUrl=https://www.fastmock.site/mock/a7a08e854dfabdb56275bfec558a8be3",
+                "--dart-define",
+                "debug=true",
+                "--dart-define",
+                "appName=\"组件化QA\""
+            ]
+        }
+    ]
+}
