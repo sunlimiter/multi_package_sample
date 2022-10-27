@@ -132,9 +132,9 @@ class ScaffoldWithNavBar extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Icon(
-                        Icons.transcribe,
-                        color: getColor(context, 1),
+                      const Icon(
+                        Icons.notification_important_rounded,
+                        color: Colors.transparent,
                       ),
                       Text(
                         '消息',
