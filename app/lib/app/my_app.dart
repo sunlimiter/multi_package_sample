@@ -1,9 +1,8 @@
 import 'package:common_dependencies/common_dependencies.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends HookWidget {
   final List<LocalizationsDelegate> localeDelegates;
   final List<RouterModule> routes;
   final String title;
@@ -17,6 +16,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _localeCubit = useBloc<LocaleCubit>();
+
+    final LocaleState _state = useBlocBuilder<LocaleCubit, LocaleState>(
+      _localeCubit,
+    );
+    debugPrint(_state.locale.toString());
     return MaterialApp.router(
       routerConfig: generateRoute(
         routes: routes,
@@ -25,7 +30,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.light,
-      localeResolutionCallback: localeResolutionCallback,
+      locale: _state.locale,
+      // localeResolutionCallback: localeResolutionCallback,
       supportedLocales: appSupportedLanguages,
       localizationsDelegates: localeDelegates,
       debugShowCheckedModeBanner: false,

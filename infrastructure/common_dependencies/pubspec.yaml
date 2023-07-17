@@ -17,7 +17,7 @@ dependencies:
   authentication: 0.0.1
   ## Packages
   flutter_bloc: ^8.1.1
-  intl: ^0.17.0
+  intl: ^0.18.0
   package_info_plus: ^3.0.1
   dio: ^4.0.6
   #数据比较

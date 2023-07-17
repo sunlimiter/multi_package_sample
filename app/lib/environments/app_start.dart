@@ -38,7 +38,7 @@ abstract class AppStart {
   AppStart(this.buildConfig);
 
   Future<void> startApp() async {
-    WidgetsFlutterBinding.ensureInitialized();
+    // WidgetsFlutterBinding.ensureInitialized();
 
     final routerModules = <RouterModule>[];
 
@@ -70,6 +70,7 @@ abstract class AppStart {
 
     await runZonedGuarded<Future<void>>(
       () async {
+        WidgetsFlutterBinding.ensureInitialized();
         runApp(
           HookedBlocConfigProvider(
             injector: () => <T extends Object>() => AppInjector.I.get<T>(),

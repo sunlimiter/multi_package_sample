@@ -14,6 +14,8 @@ class HomeCubit extends Cubit<HomeState> {
 
   final AuthenticationRepository _authenticationRepository = AppInjector.I.get();
 
+  final LocaleRepository _localeRepository = AppInjector.I.get();
+
   Future<void> init() async {
     var user = await _authenticationRepository.getUser();
     debugPrint('${user?.userModel?.toJson()}');
@@ -22,5 +24,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   void logout() {
     _authenticationRepository.logOut();
+  }
+
+  void changeLocale(Locale locale) {
+    _localeRepository.changeLocale(locale);
   }
 }

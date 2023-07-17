@@ -14,6 +14,8 @@ class AppInjectionModule implements InjectionModule {
       ..registerSingleton<AnalyticsLogger>(AppAnalyticsReceiver())
       ..registerSingleton<BuildConfig>(buildConfig)
       ..registerLazySingleton<AuthenticationRepository>(IAuthenticationRepository.new)
-      ..registerLazySingleton<AuthenticationBloc>(AuthenticationBloc.new);
+      ..registerLazySingleton<AuthenticationBloc>(AuthenticationBloc.new)
+      ..registerLazySingleton<LocaleRepository>(ILocaleRepository.new)
+      ..registerLazySingleton<LocaleCubit>(LocaleCubit.new);
   }
 }
