@@ -15,7 +15,7 @@ dependencies:
   core: 0.0.1
 
   ## Libraries
-  faker: 1.3.0
+  faker: ^2.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
