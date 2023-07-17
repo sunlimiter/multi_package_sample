@@ -106,73 +106,85 @@ class ScaffoldWithNavBar extends StatelessWidget {
         visible: location == HomeRoutes.root || location == UserRoutes.root,
         child: BottomAppBar(
           shape: const CircularNotchedRectangle(),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                GestureDetector(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Expanded(
+                child: InkWell(
                   onTap: () {
                     _onItemTapped(0, context);
                   },
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Icon(
-                        Icons.home,
-                        color: getColor(context, 0),
-                      ),
-                      Text(
-                        '首页',
-                        style: TextStyle(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Icon(
+                          Icons.home,
                           color: getColor(context, 0),
                         ),
-                      )
-                    ],
+                        Text(
+                          '首页',
+                          style: TextStyle(
+                            color: getColor(context, 0),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                GestureDetector(
+              ),
+              Expanded(
+                child: InkWell(
                   onTap: () {
                     // _onItemTapped(1, context);
                   },
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      const Icon(
-                        Icons.notification_important_rounded,
-                        color: Colors.transparent,
-                      ),
-                      Text(
-                        '消息',
-                        style: TextStyle(
-                          color: getColor(context, 1),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const Icon(
+                          Icons.notification_important_rounded,
+                          color: Colors.transparent,
                         ),
-                      )
-                    ],
+                        Text(
+                          '消息',
+                          style: TextStyle(
+                            color: getColor(context, 1),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                GestureDetector(
+              ),
+              Expanded(
+                child: InkWell(
                   onTap: () {
                     _onItemTapped(2, context);
                   },
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Icon(
-                        Icons.perm_identity,
-                        color: getColor(context, 2),
-                      ),
-                      Text(
-                        '我的',
-                        style: TextStyle(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 6),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Icon(
+                          Icons.perm_identity,
                           color: getColor(context, 2),
                         ),
-                      )
-                    ],
+                        Text(
+                          '我的',
+                          style: TextStyle(
+                            color: getColor(context, 2),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
