@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
   common_dependencies: 0.0.1
   core: 0.0.1
@@ -20,3 +23,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 flutter:
+  generate: true

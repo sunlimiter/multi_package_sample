@@ -15,7 +15,12 @@ command:
     # branch: master
     # Additionally build a changelog at the root of the workspace.
     workspaceChangelog: true
-
+  bootstrap:
+    hooks:
+      post: echo `bootstrap command is done`
+  clean:
+    hooks:
+      post: melos exec --flutter --concurrency=3 -- "flutter clean"
 scripts:
   lint:all:
     run: melos run analyze && melos run format
@@ -39,10 +44,6 @@ scripts:
       Run `flutter format .` in all packages.
         - Note: 格式化长度放开到180个字符
 
-  # Additional cleanup lifecycle script, executed when `melos clean` is run.
-  postclean: >
-    melos exec -c 6 -- "flutter clean"
-
   #  install:
   #    run: melos exec -c 6 flutter pub get
   #    description: Install all dependencies
@@ -52,6 +53,10 @@ scripts:
   pubspec_dependency_sorter: >
     melos exec -c 6 -- "flutter pub run pubspec_dependency_sorter"
 
+  l10n:
+    run: melos exec -c 1 --fail-fast --scope="*home*" --scope="*login*" --scope="*splash*" --depends-on=flutter_localizations -- \
+      flutter gen-l10n
+    description: Generates l10n for all app packages.
   app-run:
     description: "执行flutter run 命令"
     run: chmod 777 flutter_tool.sh && ./flutter_tool.sh run --t=lib/main.dart --model=qa

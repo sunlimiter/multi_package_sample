@@ -1,7 +1,7 @@
 import 'package:common_dependencies/common_dependencies.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:login/src/localization/login_localization.dart';
+import 'package:login/src/localization/login_localizations.dart';
 import 'package:login/src/ui/login_pwd/login_cubit.dart';
 import 'package:login/src/ui/login_pwd/login_state.dart';
 import 'package:login/src/widget/fade_animation.dart';
@@ -33,7 +33,7 @@ class LoginScreen extends HookWidget {
       },
       listenWhen: (state) => true,
     );
-    final _intl = LoginLocalization.of(context);
+    final _intl = AppLocalizations.of(context);
 
     return Scaffold(
       body: Container(
@@ -62,7 +62,7 @@ class LoginScreen extends HookWidget {
                   FadeAnimation(
                     1,
                     Text(
-                      '${_intl?.login}',
+                      '${_intl?.login_screen_login}',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 40,
@@ -75,7 +75,7 @@ class LoginScreen extends HookWidget {
                   FadeAnimation(
                     1.3,
                     Text(
-                      '${_intl?.title}',
+                      '${_intl?.login_screen_title}',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -155,7 +155,7 @@ class LoginScreen extends HookWidget {
                         FadeAnimation(
                           1.5,
                           Text(
-                            '${_intl?.forgotPwd}',
+                            '${_intl?.login_screen_forgot_pwd}',
                             style: const TextStyle(
                               color: Colors.grey,
                             ),
@@ -176,7 +176,7 @@ class LoginScreen extends HookWidget {
                         FadeAnimation(
                           1.7,
                           Text(
-                            '${_intl?.otherLoginType}',
+                            '${_intl?.login_screen_other_login_type}',
                             style: const TextStyle(
                               color: Colors.grey,
                             ),
@@ -257,14 +257,14 @@ class _UsernameInput extends HookWidget {
     final LoginState state = useBlocBuilder<LoginCubit, LoginState>(
       cubit,
     );
-    final _intl = LoginLocalization.of(context);
+    final _intl = AppLocalizations.of(context);
 
     return TextField(
       key: const Key('loginForm_usernameInput_textField'),
       onChanged: cubit.mapUsernameChangedToState,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
-        hintText: '${_intl?.accountHint}',
+        hintText: '${_intl?.login_screen_account_hint}',
         hintStyle: const TextStyle(color: Colors.grey),
         border: InputBorder.none,
         errorText: state.username.invalid ? '请输入正确的手机号' : null,
@@ -283,14 +283,14 @@ class _PasswordInput extends HookWidget {
     final LoginState state = useBlocBuilder<LoginCubit, LoginState>(
       cubit,
     );
-    final _intl = LoginLocalization.of(context);
+    final _intl = AppLocalizations.of(context);
 
     return TextField(
       key: const Key('loginForm_passwordInput_textField'),
       onChanged: cubit.mapPasswordChangedToState,
       obscureText: true,
       decoration: InputDecoration(
-        hintText: '${_intl?.passwordHint}',
+        hintText: '${_intl?.login_screen_password_hint}',
         hintStyle: const TextStyle(color: Colors.grey),
         border: InputBorder.none,
         errorText: state.password.invalid ? '请输入正确的密码' : null,
@@ -310,7 +310,7 @@ class _LoginButton extends HookWidget {
     final LoginState state = useBlocBuilder<LoginCubit, LoginState>(
       cubit,
     );
-    final _intl = LoginLocalization.of(context);
+    final _intl = AppLocalizations.of(context);
 
     return InkWell(
       key: const Key('loginForm_continue_raisedButton'),
@@ -331,7 +331,7 @@ class _LoginButton extends HookWidget {
           child: state.status.isSubmissionInProgress
               ? const CircularProgressIndicator()
               : Text(
-                  '${_intl?.login}',
+                  '${_intl?.login_screen_login}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
