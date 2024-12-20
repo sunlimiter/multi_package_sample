@@ -15,7 +15,7 @@ class LoginScreen extends HookWidget {
     useBlocListener<LoginCubit, LoginState>(
       _cubit,
       (_, state, _context) {
-        if (state.status.isSubmissionFailure) {
+        if (state.status.isFailure) {
           try {
             Fluttertoast.showToast(
               msg: state.message,
@@ -258,7 +258,6 @@ class _UsernameInput extends HookWidget {
       cubit,
     );
     final _intl = AppLocalizations.of(context);
-
     return TextField(
       key: const Key('loginForm_usernameInput_textField'),
       onChanged: cubit.mapUsernameChangedToState,
@@ -267,7 +266,7 @@ class _UsernameInput extends HookWidget {
         hintText: '${_intl?.login_screen_account_hint}',
         hintStyle: const TextStyle(color: Colors.grey),
         border: InputBorder.none,
-        errorText: state.username.invalid ? '请输入正确的手机号' : null,
+        errorText: state.username.displayError != null ? '请输入正确的手机号' : null,
       ),
     );
   }
@@ -293,7 +292,7 @@ class _PasswordInput extends HookWidget {
         hintText: '${_intl?.login_screen_password_hint}',
         hintStyle: const TextStyle(color: Colors.grey),
         border: InputBorder.none,
-        errorText: state.password.invalid ? '请输入正确的密码' : null,
+        errorText: state.password.displayError != null ? '请输入正确的密码' : null,
       ),
     );
   }
@@ -314,7 +313,7 @@ class _LoginButton extends HookWidget {
 
     return InkWell(
       key: const Key('loginForm_continue_raisedButton'),
-      onTap: state.status.isValidated
+      onTap: state.isValid
           ? () {
               _analyticsLogger.logEvent('login_submit_click');
               cubit.mapLoginSubmittedToState();
@@ -325,10 +324,10 @@ class _LoginButton extends HookWidget {
         margin: const EdgeInsets.symmetric(horizontal: 50),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          color: state.status.isValidated ? Colors.orange[900] : Colors.grey[300],
+          color: state.isValid ? Colors.orange[900] : Colors.grey[300],
         ),
         child: Center(
-          child: state.status.isSubmissionInProgress
+          child: state.status.isInProgress
               ? const CircularProgressIndicator()
               : Text(
                   '${_intl?.login_screen_login}',

@@ -11,7 +11,7 @@ class HomeState extends Equatable {
   final String username;
 
   HomeState copyWith({
-    FormzStatus? status,
+    FormzSubmissionStatus? status,
     String? message,
     String? username,
   }) {

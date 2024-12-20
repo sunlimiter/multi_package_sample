@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:common_dependencies/common_dependencies.dart';
 import 'package:core/core.dart';
+import 'package:network/src/result.dart';
 
 ///author: lty
 ///Time: 2020/4/2
@@ -41,10 +42,11 @@ class HttpInterceptors extends QueuedInterceptorsWrapper {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     if (err.response?.statusCode == 401) {
       AppInjector.I.get<AuthenticationRepository>().logOut();
     }
-    super.onError(err, handler);
+    handler.resolve(Response(requestOptions: err.requestOptions, data: ResultData(ok: false, error: ResultData.GlobleError).toJson()));
+    // super.onError(err, handler);
   }
 }

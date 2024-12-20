@@ -58,9 +58,10 @@ class MyApp extends HookWidget {
       refreshListenable: AppInjector.I.get<AuthenticationBloc>(),
       redirect: (context, state) {
         final bloc = AppInjector.I.get<AuthenticationBloc>();
-        final bool signedIn = bloc.state.status == AuthenticationStatus.authenticated;
-        final bool signingIn = state.subloc == LoginRoutes.root;
-        final bool splashIn = state.subloc == SplashRoutes.root;
+        final bool signedIn =
+            bloc.state.status == AuthenticationStatus.authenticated;
+        final bool signingIn = state.matchedLocation == LoginRoutes.root;
+        final bool splashIn = state.matchedLocation == SplashRoutes.root;
         //未登录，当前页为非登录页
         if (!signedIn && !signingIn) {
           return LoginRoutes.root;
@@ -85,7 +86,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GoRouter route = GoRouter.of(context);
-    final String location = route.location;
+    final String location = route.routerDelegate.currentConfiguration.fullPath;
     return Scaffold(
       body: child,
       floatingActionButton: Visibility(
@@ -194,14 +195,16 @@ class ScaffoldWithNavBar extends StatelessWidget {
   Color getColor(BuildContext context, int value) {
     var page = 0;
     final GoRouter route = GoRouter.of(context);
-    final String location = route.location;
+    final String location = route.routerDelegate.currentConfiguration.fullPath;
     if (location.startsWith(HomeRoutes.root)) {
       page = 0;
     }
     if (location.startsWith(UserRoutes.root)) {
       page = 2;
     }
-    return page != value ? Theme.of(context).unselectedWidgetColor : Theme.of(context).colorScheme.secondary;
+    return page != value
+        ? Theme.of(context).unselectedWidgetColor
+        : Theme.of(context).colorScheme.secondary;
   }
 
   void _onItemTapped(int index, BuildContext context) {

@@ -1,11 +1,10 @@
 {
-    // "dart.flutterSdkPath": "/Users/litianyi/fvm/versions/3.3.0",
-    // "dart.sdkPath": ".fvm/flutter_sdk/bin/dart",
-    "dart.lineLength": 180,
-    "[dart]": {
-        "editor.rulers": [
-            180
-        ],
-        "editor.wordWrapColumn": 180,
-    }
+  "dart.lineLength": 180,
+  "[dart]": {
+    "editor.rulers": [
+      180
+    ],
+    "editor.wordWrapColumn": 180
+  },
+  "dart.flutterSdkPath": ".fvm/versions/3.27.1"
 }

@@ -7,3 +7,10 @@ pubspec_overrides.yaml
 # "JSON to Dart Model" generator tracker files locations.
 /.json_models/
 models.jsonc
+
+# FVM Version Cache
+.fvm/
+/app/build/
+/app/android/.idea/
+/app/.dart_tool/
+.dart_tool/

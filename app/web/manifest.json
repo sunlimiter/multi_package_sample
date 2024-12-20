@@ -1,6 +1,6 @@
 {
-    "name": "app",
-    "short_name": "app",
+    "name": "multi_package_sample",
+    "short_name": "multi_package_sample",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

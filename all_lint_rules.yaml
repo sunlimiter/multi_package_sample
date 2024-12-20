@@ -150,6 +150,7 @@ linter:
     - slash_for_doc_comments
     - sort_child_properties_last
     - sort_constructors_first
+    - sort_pub_dependencies
     - sort_unnamed_constructors_first
     - test_types_in_equals
     - throw_in_finally
@@ -163,6 +164,8 @@ linter:
     - unnecessary_final
     - unnecessary_getters_setters
     - unnecessary_lambdas
+    - unnecessary_library_directive
+    - unnecessary_library_name
     - unnecessary_new
     - unnecessary_null_aware_assignments
     - unnecessary_null_checks

@@ -60,8 +60,8 @@ mixin AppNavigator {
   }) =>
       context.goNamed(
         name,
-        params: params,
-        queryParams: queryParams,
+        pathParameters: params,
+        queryParameters: queryParams,
         extra: extra,
       );
 
@@ -77,8 +77,8 @@ mixin AppNavigator {
   }) =>
       context.pushNamed(
         name,
-        params: params,
-        queryParams: queryParams,
+        pathParameters: params,
+        queryParameters: queryParams,
         extra: extra,
       );
 
@@ -94,8 +94,8 @@ mixin AppNavigator {
   }) =>
       context.replaceNamed(
         name,
-        params: params,
-        queryParams: queryParams,
+        pathParameters: params,
+        queryParameters: queryParams,
         extra: extra,
       );
 }

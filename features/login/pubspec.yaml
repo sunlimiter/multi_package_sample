@@ -4,8 +4,8 @@ version: 0.0.1
 publish_to: none
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
-  flutter: ">=1.17.0"
+  sdk: '>=3.0.1 <4.0.0'
+  flutter: ">=3.18.0-18.0.pre.54"
 
 dependencies:
   flutter:
@@ -18,7 +18,7 @@ dependencies:
   core: 0.0.1
   authentication: 0.0.1
   network: 0.0.1
-  simple_animations: ^5.0.0+2
+  simple_animations: ^5.1.0
 
 dev_dependencies:
   flutter_test:

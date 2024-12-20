@@ -12,7 +12,7 @@ class MineState extends Equatable {
   final String username;
 
   MineState copyWith({
-    FormzStatus? status,
+    FormzSubmissionStatus? status,
     String? message,
     String? username,
   }) {

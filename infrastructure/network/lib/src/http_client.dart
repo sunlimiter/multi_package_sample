@@ -57,8 +57,8 @@ class HttpClientImpl implements HttpClient {
 
     var options = BaseOptions(
       baseUrl: baseUrl,
-      connectTimeout: 5000,
-      receiveTimeout: 3000,
+      connectTimeout: const Duration(milliseconds: 5000),
+      receiveTimeout: const Duration(milliseconds: 5000),
       contentType: Headers.jsonContentType,
     );
     dio = Dio(options);
@@ -101,6 +101,7 @@ class HttpClientImpl implements HttpClient {
         headers: headers == null ? {} : headers.map(MapEntry.new),
       ),
     );
+    debugPrint('response=>$response');
     return ResultData.fromJson(response.data);
   }
 
