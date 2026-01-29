@@ -6,7 +6,7 @@
     ],
     "editor.wordWrapColumn": 180
   },
-  "dart.flutterSdkPath": ".fvm/versions/3.27.1",
+  "dart.flutterSdkPath": ".fvm/versions/3.32.8",
   "yaml.schemas": {
     "http://json.schemastore.org/pubspec": "pubspec.yaml"
   },
@@ -20,7 +20,7 @@
     "**/.flutter-plugins-dependencies": true,
     "**/.dart_tool": true,
     "**/.metadata": true,
-    "**/pubspec.lock": true, // 可见或隐藏按需
+    "**/pubspec.lock": true,
     "**/build": false,
     "**/android/app/build": true,
     "**/ios/Pods": true
