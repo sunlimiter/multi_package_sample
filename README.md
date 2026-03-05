@@ -25,13 +25,25 @@ The workspace is managed by [Melos](https://melos.invert.dev/) and organized int
     └── session          # Local storage and session management
 ```
 
-### Component Details
+---
+
+## Architecture: API & Impl Separation
+
+Each feature module in this project is split into two packages: `api` and `impl`. This design choice provides several key benefits:
+
+1.  **Decoupling**: Other modules depend only on the `api` (interfaces), making the internal implementation details of a feature hidden and easily swappable.
+2.  **Compilation Efficiency**: Changes to the concrete implementation (`impl`) do not require recompilation of modules that depend on the interface (`api`), significantly speeding up incremental builds.
+3.  **Dependency Isolation**: The `api` package remains extremely lightweight with minimal dependencies. This prevents "dependency bloat" where a small module inadvertently inherits massive transitive dependencies.
+4.  **Simplified Testing**: Mocking feature behavior for unit or integration tests is straightforward—you simply provide a mock implementation of the defined interface.
+
+---
+
+## Component Details
 
 #### `app`
 The main Flutter application. It serves as the orchestrator, integrating all features and infrastructure modules. It contains minimal business logic and focuses on dependency injection (DI) configuration and top-level routing.
 
 #### `features/`
-Each feature is split into `api` (interfaces/contracts) and `impl` (concrete implementations).
 - **`auth`**: Handles user login, registration, and authentication state.
 - **`home`**: The primary user interface after login.
 - **`message`**: Messaging and notification functionality.
@@ -39,10 +51,24 @@ Each feature is split into `api` (interfaces/contracts) and `impl` (concrete imp
 - **`splash`**: Initial loading and navigation logic.
 
 #### `infrastructure/`
-Shared libraries used across the entire project.
 - **`common`**: General-purpose utilities, base classes, and domain-agnostic logic.
 - **`network`**: Robust network client wrapper around `dio`, with support for interceptors (e.g., auth tokens).
 - **`session`**: Management of persistent user data and application state using `shared_preferences`.
+
+---
+
+## Code Generation (Mason)
+
+This project uses [Mason](https://github.com/felangel/mason) to maintain architectural consistency when creating new modules.
+
+### Generating a New Feature
+To create a new feature module following the `api` + `impl` pattern, run:
+
+```bash
+mason make feature_module --name <your_feature_name>
+```
+
+This will generate the standard directory structure, `pubspec.yaml` files, and boilerplate code for your new feature.
 
 ---
 
@@ -63,6 +89,7 @@ Shared libraries used across the entire project.
 
 - [FVM](https://fvm.app/) (Project uses specific Flutter SDK version)
 - [Melos](https://melos.invert.dev/) (Global install via `dart pub global activate melos`)
+- [Mason](https://github.com/felangel/mason) (Global install via `dart pub global activate mason_cli`)
 
 ### Getting Started
 
