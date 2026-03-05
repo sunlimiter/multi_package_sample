@@ -1,0 +1,3 @@
+bricks:
+  feature_module:
+    path: mason/feature_module

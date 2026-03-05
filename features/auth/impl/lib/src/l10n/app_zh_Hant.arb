@@ -1,0 +1,8 @@
+{
+  "login_screen_account_hint": "请输入账号",
+  "login_screen_forgot_pwd": "忘记密码?",
+  "login_screen_login": "登录",
+  "login_screen_other_login_type": "使用其他账号登录",
+  "login_screen_password_hint": "请输入密码",
+  "login_screen_title": "欢迎回来"
+}

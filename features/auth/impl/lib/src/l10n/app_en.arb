@@ -1,0 +1,8 @@
+{
+  "login_screen_account_hint": "Please enter account",
+  "login_screen_forgot_pwd": "Forgot Password?",
+  "login_screen_login": "Login",
+  "login_screen_other_login_type": "Continue with social media",
+  "login_screen_password_hint": "Please enter password",
+  "login_screen_title": "Welcome Back"
+}

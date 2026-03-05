@@ -1,23 +1,22 @@
 name: multi_package_sample
 repository: https://github.com/sunlimiter/multi_package_sample
 
+sdkPath: .fvm/flutter_sdk
+
 packages:
   - app
   - infrastructure/**
   - features/**
-
-sdkPath: .fvm/flutter_sdk
 command:
   version:
-    # Generate commit links in package changelogs.
     linkToCommits: true
-    # # Only allow versioning to happen on main branch.
-    # branch: master
-    # Additionally build a changelog at the root of the workspace.
     workspaceChangelog: true
+  
+
   bootstrap:
-    hooks:
-      post: echo `bootstrap command is done`
+    runPubGetInParallel: false
+    usePubspecOverrides: true
+
   clean:
     hooks:
       post: melos exec --flutter --concurrency=3 -- "flutter clean"
@@ -57,10 +56,23 @@ scripts:
     run: melos exec -c 1 --fail-fast --scope="*home*" --scope="*login*" --scope="*splash*" --depends-on=flutter_localizations -- \
       flutter gen-l10n
     description: Generates l10n for all app packages.
-  app-run:
-    description: "执行flutter run 命令"
-    run: chmod 777 flutter_tool.sh && ./flutter_tool.sh run --t=lib/main.dart --model=qa
+    
+  generate:
+    run: |
+      melos exec \
+        --concurrency=1 \
+        --fail-fast \
+        --depends-on="build_runner" \
+        -- \
+        "dart run build_runner build --delete-conflicting-outputs"
+    description: Run build_runner in all packages that depend on it
 
-  app-build-apk:
-    description: "执行flutter build 命令"
-    run: chmod 777 flutter_tool.sh && ./flutter_tool.sh build apk --t=lib/main.dart --model=qa
+  build:qa:
+    run: |
+      cd app && flutter build apk --release --dart-define-from-file=../.env.qa
+    description: Build QA release APK
+
+  build:prod:
+    run: |
+      cd app && flutter build apk --release --dart-define-from-file=../.env.prod
+    description: Build Production release APK
