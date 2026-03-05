@@ -1,5 +1,0 @@
-arb-dir: lib/src/l10n
-template-arb-file: app_zh.arb
-output-localization-file: home_localizations.dart
-synthetic-package: false
-output-dir: lib/src/localization

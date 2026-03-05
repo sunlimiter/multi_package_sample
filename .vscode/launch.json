@@ -1,20 +1,24 @@
 {
+    "version": "0.2.0",
     "configurations": [
         {
-            "name": "app",
+            "name": "App (QA)",
             "type": "dart",
             "request": "launch",
             "program": "lib/main.dart",
             "cwd": "app",
-            "args": [
-                "--dart-define",
-                "analyticsLogs=true",
-                "--dart-define",
-                "baseUrl=https://www.fastmock.site/mock/a7a08e854dfabdb56275bfec558a8be3",
-                "--dart-define",
-                "debug=true",
-                "--dart-define",
-                "appName=\"组件化QA\""
+            "toolArgs": [
+                "--dart-define-from-file=../.env.qa"
+            ]
+        },
+        {
+            "name": "App (Prod)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "cwd": "app",
+            "toolArgs": [
+                "--dart-define-from-file=../.env.prod"
             ]
         }
     ]

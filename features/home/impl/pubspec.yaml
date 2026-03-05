@@ -1,0 +1,24 @@
+name: home
+description: Implementation of home feature
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  common: 0.0.1
+  home_api: 0.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  injectable_generator: ^2.9.1
+  build_runner: ^2.10.5
+
+flutter:
+  generate: true

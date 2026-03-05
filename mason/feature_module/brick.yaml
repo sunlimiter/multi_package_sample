@@ -1,0 +1,10 @@
+name: feature_module
+description: A new feature module with api and impl packages
+version: 0.1.0+1
+environment:
+  mason: ">=0.1.2"
+vars:
+  name:
+    type: string
+    description: The name of the feature module
+    prompt: What is the name of the feature module?

@@ -1,0 +1,26 @@
+name: splash
+description: Implementation of splash feature
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  auth_api: 0.0.1
+  common: 0.0.1
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  home_api: 0.0.1
+  splash_api: 0.0.1
+
+dev_dependencies:
+  build_runner: ^2.10.5
+  flutter_test:
+    sdk: flutter
+  injectable_generator: ^2.9.1
+
+flutter:
+  generate: true

@@ -1,0 +1,10 @@
+{
+    "ok": true,
+    "result": {
+        "token": "mock_token_123456789",
+        "userInfo": {
+            "userId": "mock_user_1",
+            "userName": "testuser"
+        }
+    }
+}

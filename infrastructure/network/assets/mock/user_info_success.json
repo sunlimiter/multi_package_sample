@@ -1,0 +1,9 @@
+{
+    "code": 200,
+    "message": "success",
+    "result": {
+        "userId": "PRO_999",
+        "userName": "Antigravity Pro",
+        "avatar": "https://example.com/avatar.png"
+    }
+}
