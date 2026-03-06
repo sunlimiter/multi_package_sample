@@ -4,5 +4,11 @@
   "login_screen_login": "登录",
   "login_screen_other_login_type": "使用其他账号登录",
   "login_screen_password_hint": "请输入密码",
-  "login_screen_title": "欢迎回来"
+  "login_screen_title": "欢迎回来",
+  "login_screen_username_error": "请输入正确的手机号",
+  "login_screen_password_error": "请输入正确的密码",
+  "login_screen_facebook": "Facebook",
+  "login_screen_github": "Github",
+  "login_screen_error_failed": "登录失败",
+  "login_screen_success": "登录成功"
 }

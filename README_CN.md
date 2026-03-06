@@ -38,6 +38,22 @@
 
 ---
 
+## MVI 架构与 Repository 模式
+
+本项目使用 `flutter_bloc` 和 `freezed` 实现了 Model-View-Intent (MVI) 架构，以确保单向数据流和可预测的状态管理。
+
+1. **Intent (意图)**：UI 组件将 `MviIntent`（用户交互或生命周期事件）分发给 Cubit。
+2. **Model (状态)**：Cubit 处理 Intent，通过 `MviViewState`（通常是 `freezed` 数据类）更新不可变状态，并对外发射 (emit) 新状态。
+3. **View (视图)**：UI 只负责纯粹地渲染接收到的最新的 `MviViewState`。
+4. **Single Events (一次性事件)**：一次性的 UI 行为（如弹窗、Toast、路由跳转）通过独立的 `effectStream` 发送 `MviSingleEvent` 进行处理，与持续更新的 ViewState 状态解耦。
+
+### Repository 模式与 SPI 设计
+
+- **Repositories**：所有 Cubits 都与 Repository 交互，而不是直接调用网络或缓存工具类。Repository 将数据来源进行抽象。
+- **跨模块 SPI**：我们利用 `get_it` 配合 `api`/`impl` 的包拆分，实现了类似 Java SPI 的模式。例如，`profile` 模块在刷新用户数据时，可以直接调用定义在 `auth_api` 的 `IAuthService` 接口。该接口由于在 `auth_impl` 模块中实现了注入，因此 `get_it` 能自动通过反射连接调用。这避免了特性实现层之间的模块强耦合。
+
+---
+
 ## 目录说明
 
 #### `app`

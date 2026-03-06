@@ -3,6 +3,7 @@ import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_api/auth_api.dart';
 import 'package:home_api/home_api.dart';
+import '../localization/splash_localizations.dart';
 
 class SplashScreen extends HookWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -77,9 +78,9 @@ class SplashScreen extends HookWidget {
                   child: child,
                 );
               },
-              child: const Text(
-                'WELCOME',
-                style: TextStyle(
+              child: Text(
+                AppLocalizations.of(context)?.splash_welcome ?? 'WELCOME',
+                style: const TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -95,7 +96,7 @@ class SplashScreen extends HookWidget {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Text(
-                'Starting in ${countdown.value}s...',
+                AppLocalizations.of(context)?.splash_starting_in(countdown.value) ?? 'Starting in ${countdown.value}s...',
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,

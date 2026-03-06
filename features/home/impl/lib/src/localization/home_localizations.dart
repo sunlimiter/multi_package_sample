@@ -100,11 +100,17 @@ abstract class AppLocalizations {
     Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
   ];
 
-  /// No description provided for @helloWorld.
+  /// No description provided for @home_title.
   ///
   /// In en, this message translates to:
-  /// **'Hello World!'**
-  String get helloWorld;
+  /// **'Home'**
+  String get home_title;
+
+  /// No description provided for @home_screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Home Screen'**
+  String get home_screen;
 }
 
 class _AppLocalizationsDelegate

@@ -38,6 +38,22 @@ Each feature module in this project is split into two packages: `api` and `impl`
 
 ---
 
+## MVI Architecture & Repository Pattern
+
+This project implements a Model-View-Intent (MVI) architecture using `flutter_bloc` and `freezed` to ensure a unidirectional data flow and predictable state management. 
+
+1. **Intent**: UI components dispatch `MviIntent`s (user actions or lifecyle events) to the Cubit.
+2. **Model (State)**: The Cubit processes the intent, updates the immutable result using `MviViewState` (often a `freezed` data class), and emits the new state.
+3. **View**: The UI blindly renders whatever in the `MviViewState`.
+4. **Single Events**: One-off UI actions (like showing a dialog, toast, or navigation) are handled via a separate `effectStream` emitting `MviSingleEvent`s, decoupled from the continuous ViewState.
+
+### Repository Pattern & SPI (Service Provider Interface)
+
+- **Repositories**: All Cubits interact with Repositories rather than calling network or cache utilities directly. Repositories abstract the source of data.
+- **Cross-Module SPI**: We use `get_it` alongside the `api`/`impl` separation to achieve an SPI-like pattern. For example, `profile` can refresh user data by calling an `IAuthService` interface defined in `auth_api`, which is injected via `get_it` and strictly implemented in `auth_impl`. This prevents strong coupling between feature implementations.
+
+---
+
 ## Component Details
 
 #### `app`

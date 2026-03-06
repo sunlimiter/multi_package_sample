@@ -9,5 +9,8 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get helloWorld => 'Hello World!';
+  String get message_title => 'Message';
+
+  @override
+  String get message_screen => 'Message Screen';
 }

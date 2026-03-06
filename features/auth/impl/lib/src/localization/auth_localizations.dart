@@ -135,6 +135,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome Back'**
   String get login_screen_title;
+
+  /// No description provided for @login_screen_username_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number'**
+  String get login_screen_username_error;
+
+  /// No description provided for @login_screen_password_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid password'**
+  String get login_screen_password_error;
+
+  /// No description provided for @login_screen_facebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook'**
+  String get login_screen_facebook;
+
+  /// No description provided for @login_screen_github.
+  ///
+  /// In en, this message translates to:
+  /// **'Github'**
+  String get login_screen_github;
+
+  /// No description provided for @login_screen_error_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Login failed'**
+  String get login_screen_error_failed;
+
+  /// No description provided for @login_screen_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Login successful'**
+  String get login_screen_success;
 }
 
 class _AppLocalizationsDelegate

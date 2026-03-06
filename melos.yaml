@@ -38,10 +38,10 @@ scripts:
   format:
     run: |
       melos exec -c 5 -- \
-        flutter format . -l 180
+        flutter format . -l 120
     description: |
       Run `flutter format .` in all packages.
-        - Note: 格式化长度放开到180个字符
+        - Note: 格式化长度放开到120个字符
 
   #  install:
   #    run: melos exec -c 6 flutter pub get
@@ -53,7 +53,7 @@ scripts:
     melos exec -c 6 -- "flutter pub run pubspec_dependency_sorter"
 
   l10n:
-    run: melos exec -c 1 --fail-fast --scope="*home*" --scope="*login*" --scope="*splash*" --depends-on=flutter_localizations -- \
+    run: melos exec -c 1 --fail-fast  --depends-on=flutter_localizations -- \
       flutter gen-l10n
     description: Generates l10n for all app packages.
     

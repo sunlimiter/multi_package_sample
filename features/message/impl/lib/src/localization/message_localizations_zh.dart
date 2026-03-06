@@ -9,7 +9,10 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get helloWorld => '你好世界！';
+  String get message_title => '消息';
+
+  @override
+  String get message_screen => '消息屏幕';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -17,7 +20,10 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   AppLocalizationsZhHans() : super('zh_Hans');
 
   @override
-  String get helloWorld => '你好世界！';
+  String get message_title => '消息';
+
+  @override
+  String get message_screen => '消息屏幕';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -25,5 +31,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   AppLocalizationsZhHant() : super('zh_Hant');
 
   @override
-  String get helloWorld => '你好世界！';
+  String get message_title => '訊息';
+
+  @override
+  String get message_screen => '訊息屏幕';
 }

@@ -100,11 +100,161 @@ abstract class AppLocalizations {
     Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
   ];
 
-  /// No description provided for @helloWorld.
+  /// No description provided for @profile_title.
   ///
   /// In en, this message translates to:
-  /// **'Hello World!'**
-  String get helloWorld;
+  /// **'Profile'**
+  String get profile_title;
+
+  /// No description provided for @profile_guest_user.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest User'**
+  String get profile_guest_user;
+
+  /// No description provided for @profile_unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'unknown'**
+  String get profile_unknown;
+
+  /// No description provided for @profile_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Flutter Developer & Enthusiast'**
+  String get profile_description;
+
+  /// No description provided for @profile_stats_posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts'**
+  String get profile_stats_posts;
+
+  /// No description provided for @profile_stats_followers.
+  ///
+  /// In en, this message translates to:
+  /// **'Followers'**
+  String get profile_stats_followers;
+
+  /// No description provided for @profile_stats_following.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+  String get profile_stats_following;
+
+  /// No description provided for @profile_action_edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get profile_action_edit;
+
+  /// No description provided for @profile_action_share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Profile'**
+  String get profile_action_share;
+
+  /// No description provided for @profile_menu_saved_posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Posts'**
+  String get profile_menu_saved_posts;
+
+  /// No description provided for @profile_menu_liked_items.
+  ///
+  /// In en, this message translates to:
+  /// **'Liked Items'**
+  String get profile_menu_liked_items;
+
+  /// No description provided for @profile_menu_browsing_history.
+  ///
+  /// In en, this message translates to:
+  /// **'Browsing History'**
+  String get profile_menu_browsing_history;
+
+  /// No description provided for @profile_menu_help_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & Support'**
+  String get profile_menu_help_support;
+
+  /// No description provided for @settings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings_title;
+
+  /// No description provided for @settings_section_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get settings_section_account;
+
+  /// No description provided for @settings_privacy_security.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & Security'**
+  String get settings_privacy_security;
+
+  /// No description provided for @settings_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get settings_notifications;
+
+  /// No description provided for @settings_section_general.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get settings_section_general;
+
+  /// No description provided for @settings_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settings_language;
+
+  /// No description provided for @settings_display_theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Display & Theme'**
+  String get settings_display_theme;
+
+  /// No description provided for @settings_section_about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get settings_section_about;
+
+  /// No description provided for @settings_about_app.
+  ///
+  /// In en, this message translates to:
+  /// **'About App'**
+  String get settings_about_app;
+
+  /// No description provided for @settings_terms_service.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get settings_terms_service;
+
+  /// No description provided for @settings_log_out.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get settings_log_out;
+
+  /// No description provided for @settings_log_out_confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get settings_log_out_confirm;
+
+  /// No description provided for @settings_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get settings_cancel;
 }
 
 class _AppLocalizationsDelegate

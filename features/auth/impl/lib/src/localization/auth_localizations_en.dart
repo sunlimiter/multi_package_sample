@@ -25,4 +25,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login_screen_title => 'Welcome Back';
+
+  @override
+  String get login_screen_username_error => 'Please enter a valid phone number';
+
+  @override
+  String get login_screen_password_error => 'Please enter a valid password';
+
+  @override
+  String get login_screen_facebook => 'Facebook';
+
+  @override
+  String get login_screen_github => 'Github';
+
+  @override
+  String get login_screen_error_failed => 'Login failed';
+
+  @override
+  String get login_screen_success => 'Login successful';
 }
