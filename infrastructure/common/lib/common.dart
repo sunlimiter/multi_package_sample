@@ -26,3 +26,6 @@ export 'package:shared_preferences/shared_preferences.dart';
 
 export 'package:get_it/get_it.dart';
 export 'package:fluttertoast/fluttertoast.dart';
+export 'package:freezed_annotation/freezed_annotation.dart';
+
+export 'src/mvi/mvi_base.dart';
