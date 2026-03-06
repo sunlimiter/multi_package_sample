@@ -20,6 +20,7 @@ dev_dependencies:
     sdk: flutter
   injectable_generator: ^2.9.1
   build_runner: ^2.10.5
+  freezed: ^3.2.3
 
 flutter:
   generate: true

@@ -1,3 +1,11 @@
 {
-  "helloWorld": "Hello World!"
+  "splash_welcome": "WELCOME",
+  "splash_starting_in": "Starting in {seconds}s...",
+  "@splash_starting_in": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  }
 }

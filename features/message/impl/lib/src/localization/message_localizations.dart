@@ -100,11 +100,17 @@ abstract class AppLocalizations {
     Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
   ];
 
-  /// No description provided for @helloWorld.
+  /// No description provided for @message_title.
   ///
   /// In en, this message translates to:
-  /// **'Hello World!'**
-  String get helloWorld;
+  /// **'Message'**
+  String get message_title;
+
+  /// No description provided for @message_screen.
+  ///
+  /// In en, this message translates to:
+  /// **'Message Screen'**
+  String get message_screen;
 }
 
 class _AppLocalizationsDelegate

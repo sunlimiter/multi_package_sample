@@ -4,27 +4,18 @@ import 'profile_state.dart';
 
 @injectable
 class ProfileCubit extends Cubit<ProfileState> {
-  final HttpClient _httpClient;
+  final IAuthService _authService;
 
-  ProfileCubit(this._httpClient) : super(const ProfileState());
+  ProfileCubit(this._authService) : super(const ProfileState());
 
   Future<void> fetchUserInfo() async {
     try {
       emit(state.copyWith(isLoading: true, error: null));
-      final resultData = await _httpClient.get('/api/userInfo');
-
-      if (resultData.ok) {
-        final newUserInfo = UserInfo.fromJson(resultData.result);
-        final currentUser = SessionManager.defaultManager.getUser<AuthUser>();
-        if (currentUser != null) {
-          final updatedUser = currentUser.copyWith(userInfo: newUserInfo);
-          await SessionManager.defaultManager.setUser<AuthUser>(updatedUser);
-          emit(state.copyWith(isLoading: false));
-        } else {
-          emit(state.copyWith(isLoading: false, error: 'No session found'));
-        }
+      final updatedUser = await _authService.refreshUserInfo();
+      if (updatedUser != null) {
+        emit(state.copyWith(isLoading: false));
       } else {
-        emit(state.copyWith(isLoading: false, error: resultData.error?.message ?? 'Failed to fetch user info'));
+        emit(state.copyWith(isLoading: false, error: 'User info update returned null without error'));
       }
     } catch (e) {
       emit(state.copyWith(isLoading: false, error: e.toString()));

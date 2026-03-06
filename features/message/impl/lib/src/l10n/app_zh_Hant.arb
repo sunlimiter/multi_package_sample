@@ -1,3 +1,4 @@
 {
-  "helloWorld": "你好世界！"
+  "message_title": "訊息",
+  "message_screen": "訊息屏幕"
 }

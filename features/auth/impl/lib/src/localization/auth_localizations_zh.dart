@@ -25,6 +25,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get login_screen_title => '欢迎回来';
+
+  @override
+  String get login_screen_username_error => '请输入正确的手机号';
+
+  @override
+  String get login_screen_password_error => '请输入正确的密码';
+
+  @override
+  String get login_screen_facebook => 'Facebook';
+
+  @override
+  String get login_screen_github => 'Github';
+
+  @override
+  String get login_screen_error_failed => '登录失败';
+
+  @override
+  String get login_screen_success => '登录成功';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -48,6 +66,24 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get login_screen_title => '欢迎回来';
+
+  @override
+  String get login_screen_username_error => '请输入正确的手机号';
+
+  @override
+  String get login_screen_password_error => '请输入正确的密码';
+
+  @override
+  String get login_screen_facebook => 'Facebook';
+
+  @override
+  String get login_screen_github => 'Github';
+
+  @override
+  String get login_screen_error_failed => '登录失败';
+
+  @override
+  String get login_screen_success => '登录成功';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -71,4 +107,22 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get login_screen_title => '欢迎回来';
+
+  @override
+  String get login_screen_username_error => '請輸入正確的手機號';
+
+  @override
+  String get login_screen_password_error => '請輸入正確的密碼';
+
+  @override
+  String get login_screen_facebook => 'Facebook';
+
+  @override
+  String get login_screen_github => 'Github';
+
+  @override
+  String get login_screen_error_failed => '登錄失敗';
+
+  @override
+  String get login_screen_success => '登錄成功';
 }

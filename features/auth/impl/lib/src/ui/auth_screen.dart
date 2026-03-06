@@ -3,33 +3,42 @@ import 'package:flutter/material.dart';
 
 import '../localization/auth_localizations.dart';
 import '../widget/fade_animation.dart';
+import 'login_contract.dart';
 import 'login_cubit.dart';
-import 'login_state.dart';
 
 class AuthScreen extends HookWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _cubit = useBloc<LoginCubit>();
-    useBlocListener<LoginCubit, LoginState>(_cubit, (_, state, _context) {
-      if (state.status.isFailure) {
-        try {
-          Fluttertoast.showToast(
-            msg: state.message,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16,
-          );
-        } catch (ex, stack) {
-          debugPrint('$ex');
-          debugPrint('$stack');
-        }
-      }
-    }, listenWhen: (state) => true);
     final _intl = AppLocalizations.of(context);
+    final _cubit = useBloc<LoginCubit>();
+    final state = useBlocBuilder<LoginCubit, LoginState>(_cubit);
+    final _analyticsLogger = GetIt.I<AnalyticsLogger>();
+    useEffect(() {
+      final subscription = _cubit.effectStream.listen((effect) {
+        effect.when(
+          loginSuccess: () {},
+          loginFailure: (message) {
+            try {
+              final translatedMsg = message == 'Login failed' ? (_intl?.login_screen_error_failed ?? message) : message;
+              Fluttertoast.showToast(
+                msg: translatedMsg,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16,
+              );
+            } catch (ex, stack) {
+              debugPrint('$ex');
+              debugPrint('$stack');
+            }
+          },
+        );
+      });
+      return subscription.cancel;
+    }, [_cubit]);
 
     return Scaffold(
       body: Container(
@@ -95,14 +104,20 @@ class AuthScreen extends HookWidget {
                                   decoration: BoxDecoration(
                                     border: Border(bottom: BorderSide(color: Colors.grey.shade200)),
                                   ),
-                                  child: _UsernameInput(cubit: _cubit),
+                                  child: _UsernameInput(
+                                    errorText: state.username.displayError != null ? _intl?.login_screen_username_error : null,
+                                    onChanged: (val) => _cubit.onIntent(LoginIntent.usernameChanged(val)),
+                                  ),
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                     border: Border(bottom: BorderSide(color: Colors.grey.shade200)),
                                   ),
-                                  child: _PasswordInput(cubit: _cubit),
+                                  child: _PasswordInput(
+                                    errorText: state.password.displayError != null ? _intl?.login_screen_password_error : null,
+                                    onChanged: (val) => _cubit.onIntent(LoginIntent.passwordChanged(val)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -114,7 +129,17 @@ class AuthScreen extends HookWidget {
                           Text('${_intl?.login_screen_forgot_pwd}', style: const TextStyle(color: Colors.grey)),
                         ),
                         const SizedBox(height: 40),
-                        FadeAnimation(1.6, _LoginButton(cubit: _cubit)),
+                        FadeAnimation(
+                          1.6,
+                          _LoginButton(
+                            isValid: state.isValid,
+                            isLoading: state.status.isInProgress,
+                            onTap: () {
+                              _analyticsLogger.logEvent('login_submit_click');
+                              _cubit.onIntent(const LoginIntent.loginSubmitted());
+                            },
+                          ),
+                        ),
                         const SizedBox(height: 50),
                         FadeAnimation(
                           1.7,
@@ -132,10 +157,10 @@ class AuthScreen extends HookWidget {
                                     borderRadius: BorderRadius.circular(50),
                                     color: Colors.blue,
                                   ),
-                                  child: const Center(
+                                  child: Center(
                                     child: Text(
-                                      'Facebook',
-                                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                      _intl?.login_screen_facebook ?? 'Facebook',
+                                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 ),
@@ -151,10 +176,10 @@ class AuthScreen extends HookWidget {
                                     borderRadius: BorderRadius.circular(50),
                                     color: Colors.black,
                                   ),
-                                  child: const Center(
+                                  child: Center(
                                     child: Text(
-                                      'Github',
-                                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                      _intl?.login_screen_github ?? 'Github',
+                                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 ),
@@ -175,81 +200,81 @@ class AuthScreen extends HookWidget {
   }
 }
 
-class _UsernameInput extends HookWidget {
-  final LoginCubit cubit;
+class _UsernameInput extends StatelessWidget {
+  final String? errorText;
+  final ValueChanged<String> onChanged;
 
-  const _UsernameInput({Key? key, required this.cubit}) : super(key: key);
+  const _UsernameInput({Key? key, this.errorText, required this.onChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final LoginState state = useBlocBuilder<LoginCubit, LoginState>(cubit);
     final _intl = AppLocalizations.of(context);
     return TextField(
       key: const Key('loginForm_usernameInput_textField'),
-      onChanged: cubit.mapUsernameChangedToState,
+      onChanged: onChanged,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         hintText: '${_intl?.login_screen_account_hint}',
         hintStyle: const TextStyle(color: Colors.grey),
         border: InputBorder.none,
-        errorText: state.username.displayError != null ? '请输入正确的手机号' : null,
+        errorText: errorText,
       ),
     );
   }
 }
 
-class _PasswordInput extends HookWidget {
-  final LoginCubit cubit;
+class _PasswordInput extends StatelessWidget {
+  final String? errorText;
+  final ValueChanged<String> onChanged;
 
-  const _PasswordInput({Key? key, required this.cubit}) : super(key: key);
+  const _PasswordInput({Key? key, this.errorText, required this.onChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final LoginState state = useBlocBuilder<LoginCubit, LoginState>(cubit);
     final _intl = AppLocalizations.of(context);
 
     return TextField(
       key: const Key('loginForm_passwordInput_textField'),
-      onChanged: cubit.mapPasswordChangedToState,
+      onChanged: onChanged,
       obscureText: true,
       decoration: InputDecoration(
         hintText: '${_intl?.login_screen_password_hint}',
         hintStyle: const TextStyle(color: Colors.grey),
         border: InputBorder.none,
-        errorText: state.password.displayError != null ? '请输入正确的密码' : null,
+        errorText: errorText,
       ),
     );
   }
 }
 
-class _LoginButton extends HookWidget {
-  final LoginCubit cubit;
-  final AnalyticsLogger _analyticsLogger = GetIt.I<AnalyticsLogger>();
+class _LoginButton extends StatelessWidget {
+  final bool isValid;
+  final bool isLoading;
+  final VoidCallback? onTap;
 
-  _LoginButton({Key? key, required this.cubit}) : super(key: key);
+  const _LoginButton({
+    Key? key,
+    required this.isValid,
+    required this.isLoading,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final LoginState state = useBlocBuilder<LoginCubit, LoginState>(cubit);
     final _intl = AppLocalizations.of(context);
 
     return InkWell(
       key: const Key('loginForm_continue_raisedButton'),
-      onTap: state.isValid
-          ? () {
-              _analyticsLogger.logEvent('login_submit_click');
-              cubit.mapLoginSubmittedToState();
-            }
-          : null,
+      onTap: isValid ? onTap : null,
       child: Container(
         height: 50,
         margin: const EdgeInsets.symmetric(horizontal: 50),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          color: state.isValid ? Colors.orange[900] : Colors.grey[300],
+          color: isValid ? Colors.orange[900] : Colors.grey[300],
         ),
         child: Center(
-          child: state.status.isInProgress
+          child: isLoading
               ? const CircularProgressIndicator()
               : Text(
                   '${_intl?.login_screen_login}',

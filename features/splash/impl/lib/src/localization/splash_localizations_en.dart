@@ -9,5 +9,10 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get helloWorld => 'Hello World!';
+  String get splash_welcome => 'WELCOME';
+
+  @override
+  String splash_starting_in(int seconds) {
+    return 'Starting in ${seconds}s...';
+  }
 }

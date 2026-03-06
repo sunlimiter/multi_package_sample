@@ -3,17 +3,29 @@ import 'package:auth_api/auth_api.dart';
 import 'package:common/common.dart';
 import 'package:flutter/widgets.dart';
 
-import 'login_state.dart';
+import '../repository/auth_repository.dart';
+import 'login_contract.dart';
 
 ///author: lty
 ///Time: 2022/06/02
-///Description:
+///Description: Refactored to MVI and Repository Pattern
 
 @injectable
-class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(const LoginState());
+class LoginCubit extends BaseMviCubit<LoginIntent, LoginState, LoginSingleEvent> {
+  final AuthRepository _authRepository;
 
-  void mapUsernameChangedToState(String username) {
+  LoginCubit(this._authRepository) : super(const LoginState());
+
+  @override
+  void onIntent(LoginIntent intent) {
+    intent.when(
+      usernameChanged: _onUsernameChanged,
+      passwordChanged: _onPasswordChanged,
+      loginSubmitted: _onLoginSubmitted,
+    );
+  }
+
+  void _onUsernameChanged(String username) {
     final _username = Username.dirty(username);
     emit(
       state.copyWith(
@@ -24,7 +36,7 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
-  void mapPasswordChangedToState(String password) {
+  void _onPasswordChanged(String password) {
     final _password = Password.dirty(password);
     emit(
       state.copyWith(
@@ -35,28 +47,26 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
-  Future<void> mapLoginSubmittedToState() async {
-    HttpClient _httpClient = GetIt.I.get<HttpClient>();
+  Future<void> _onLoginSubmitted() async {
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        var result = await _httpClient.post(
-          '/api/loginByPwd',
-          body: {'userName': state.username.value, 'password': state.password.value},
+        final authUser = await _authRepository.loginByPwd(
+          state.username.value,
+          state.password.value,
         );
-        debugPrint('Login result: ${result.ok}, error: ${result.error}, data: ${result.result}');
-        if (result.ok) {
-          // Consume the mock JSON data rather than hardcoding it
-          var authUser = AuthUser.fromJson(result.result);
-          await SessionManager.defaultManager.setUser(authUser);
-          await SessionManager.defaultManager.setUserToken(authUser.token);
+        
+        if (authUser != null) {
           emit(state.copyWith(status: FormzSubmissionStatus.success));
+          emitEffect(const LoginSingleEvent.loginSuccess());
         } else {
-          emit(state.copyWith(status: FormzSubmissionStatus.failure, message: result.error?.message));
+          emit(state.copyWith(status: FormzSubmissionStatus.failure, message: 'Login failed'));
+          emitEffect(const LoginSingleEvent.loginFailure('Login failed'));
         }
       } catch (ex) {
         debugPrint('Login error: $ex');
         emit(state.copyWith(status: FormzSubmissionStatus.failure, message: ex.toString()));
+        emitEffect(LoginSingleEvent.loginFailure(ex.toString()));
       }
     }
   }
