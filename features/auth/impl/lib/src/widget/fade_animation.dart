@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
@@ -14,14 +13,10 @@ class FadeAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MovieTween tween = MovieTween()
-      ..tween(
-        'opacity',
-        Tween(begin: 0.0, end: 1.0),
-        duration: const Duration(milliseconds: 500),
-      )
+      ..tween('opacity', Tween(begin: 0, end: 1), duration: const Duration(milliseconds: 500))
       ..tween(
         'translateY',
-        Tween(begin: -30.0, end: 0.0),
+        Tween(begin: -30, end: 0),
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeOut,
       );
@@ -34,10 +29,7 @@ class FadeAnimation extends StatelessWidget {
       builder: (context, value, child) {
         return Opacity(
           opacity: value.get('opacity'),
-          child: Transform.translate(
-            offset: Offset(0, value.get('translateY')),
-            child: child,
-          ),
+          child: Transform.translate(offset: Offset(0, value.get('translateY')), child: child),
         );
       },
     );

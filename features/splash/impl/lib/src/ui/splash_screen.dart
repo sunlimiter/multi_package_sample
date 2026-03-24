@@ -41,11 +41,7 @@ class SplashScreen extends HookWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Colors.orange.shade900,
-              Colors.orange.shade800,
-              Colors.orange.shade400,
-            ],
+            colors: [Colors.orange.shade900, Colors.orange.shade800, Colors.orange.shade400],
           ),
         ),
         child: Column(
@@ -56,16 +52,9 @@ class SplashScreen extends HookWidget {
               duration: const Duration(seconds: 1),
               curve: Curves.elasticOut,
               builder: (context, value, child) {
-                return Transform.scale(
-                  scale: value,
-                  child: child,
-                );
+                return Transform.scale(scale: value, child: child);
               },
-              child: const Icon(
-                Icons.flash_on_rounded,
-                size: 120,
-                color: Colors.white,
-              ),
+              child: const Icon(Icons.flash_on_rounded, size: 120, color: Colors.white),
             ),
             const SizedBox(height: 32),
             TweenAnimationBuilder(
@@ -73,10 +62,7 @@ class SplashScreen extends HookWidget {
               duration: const Duration(milliseconds: 1500),
               curve: Curves.easeIn,
               builder: (context, value, child) {
-                return Opacity(
-                  opacity: value,
-                  child: child,
-                );
+                return Opacity(opacity: value, child: child);
               },
               child: Text(
                 AppLocalizations.of(context)?.splash_welcome ?? 'WELCOME',
@@ -91,17 +77,11 @@ class SplashScreen extends HookWidget {
             const SizedBox(height: 48),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              decoration: BoxDecoration(
-                color: Colors.black26,
-                borderRadius: BorderRadius.circular(30),
-              ),
+              decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(30)),
               child: Text(
-                AppLocalizations.of(context)?.splash_starting_in(countdown.value) ?? 'Starting in ${countdown.value}s...',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
+                AppLocalizations.of(context)?.splash_starting_in(countdown.value) ??
+                    'Starting in ${countdown.value}s...',
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
               ),
             ),
           ],

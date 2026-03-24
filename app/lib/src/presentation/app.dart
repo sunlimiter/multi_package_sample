@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
 
         if (isSplashRoute) {
           // Allow the splash screen to render and handle its own countdown and routing.
-          return null; 
+          return null;
         }
 
         if (!isLoggedIn && !isAuthRoute) {
@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
           // If logged in and trying to access an auth route, redirect to home.
           return HomeRoutes.root;
         }
-        
+
         return null;
       },
     );

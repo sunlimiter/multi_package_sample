@@ -23,10 +23,6 @@ class SessionConfigBuilder {
     if (_configName == null || _configName!.isEmpty) {
       throw ArgumentError('configName is required');
     }
-    return SessionConfig(
-      configName: _configName!,
-      userToJson: _userToJson,
-      userFromJson: _userFromJson,
-    );
+    return SessionConfig(configName: _configName!, userToJson: _userToJson, userFromJson: _userFromJson);
   }
 }

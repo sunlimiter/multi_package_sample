@@ -35,5 +35,6 @@ dev_dependencies:
     sdk: flutter
   injectable_generator: ^2.9.1
 
+resolution: workspace
 flutter:
   uses-material-design: true

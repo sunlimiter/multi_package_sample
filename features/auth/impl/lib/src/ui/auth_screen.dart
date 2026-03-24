@@ -105,7 +105,9 @@ class AuthScreen extends HookWidget {
                                     border: Border(bottom: BorderSide(color: Colors.grey.shade200)),
                                   ),
                                   child: _UsernameInput(
-                                    errorText: state.username.displayError != null ? _intl?.login_screen_username_error : null,
+                                    errorText: state.username.displayError != null
+                                        ? _intl?.login_screen_username_error
+                                        : null,
                                     onChanged: (val) => _cubit.onIntent(LoginIntent.usernameChanged(val)),
                                   ),
                                 ),
@@ -115,7 +117,9 @@ class AuthScreen extends HookWidget {
                                     border: Border(bottom: BorderSide(color: Colors.grey.shade200)),
                                   ),
                                   child: _PasswordInput(
-                                    errorText: state.password.displayError != null ? _intl?.login_screen_password_error : null,
+                                    errorText: state.password.displayError != null
+                                        ? _intl?.login_screen_password_error
+                                        : null,
                                     onChanged: (val) => _cubit.onIntent(LoginIntent.passwordChanged(val)),
                                   ),
                                 ),
@@ -252,12 +256,7 @@ class _LoginButton extends StatelessWidget {
   final bool isLoading;
   final VoidCallback? onTap;
 
-  const _LoginButton({
-    Key? key,
-    required this.isValid,
-    required this.isLoading,
-    this.onTap,
-  }) : super(key: key);
+  const _LoginButton({Key? key, required this.isValid, required this.isLoading, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

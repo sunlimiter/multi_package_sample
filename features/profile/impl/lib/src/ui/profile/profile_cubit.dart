@@ -10,7 +10,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> fetchUserInfo() async {
     try {
-      emit(state.copyWith(isLoading: true, error: null));
+      emit(state.copyWith(isLoading: true));
       final updatedUser = await _authService.refreshUserInfo();
       if (updatedUser != null) {
         emit(state.copyWith(isLoading: false));

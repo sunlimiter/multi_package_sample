@@ -12,16 +12,10 @@ import 'package:splash/src/di/splash_localization_module.dart' as _i858;
 import 'package:splash/src/di/splash_navigation_module.dart' as _i803;
 
 class SplashPackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
-    gh.factory<_i107.IModuleLocalization>(
-      () => _i858.SplashLocalizationModule(),
-      instanceName: 'Splash',
-    );
-    gh.factory<_i107.IModuleRouter>(
-      () => _i803.SplashNavigationModule(),
-      instanceName: 'Splash',
-    );
+    gh.factory<_i107.IModuleLocalization>(() => _i858.SplashLocalizationModule(), instanceName: 'Splash');
+    gh.factory<_i107.IModuleRouter>(() => _i803.SplashNavigationModule(), instanceName: 'Splash');
   }
 }

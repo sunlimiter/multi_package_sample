@@ -8,10 +8,7 @@ import 'package:injectable/injectable.dart';
 @injectable
 class MockInterceptor extends Interceptor {
   @override
-  Future<void> onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
+  Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     // Only intercept requests if running in debug mode
     if (!kDebugMode) {
       return handler.next(options);
@@ -28,21 +25,12 @@ class MockInterceptor extends Interceptor {
         final jsonString = await rootBundle.loadString(assetPath);
         final dynamic data = jsonDecode(jsonString);
 
-        return handler.resolve(
-          Response(
-            requestOptions: options,
-            data: data,
-            statusCode: 200,
-          ),
-        );
+        return handler.resolve(Response(requestOptions: options, data: data, statusCode: 200));
       } catch (e) {
         debugPrint('MockInterceptor: Error loading mock data: $e');
         // If the mock parsing fails, let the error pass through
         return handler.reject(
-          DioException(
-            requestOptions: options,
-            error: 'Mock Error: Failed to load mock data for ${options.path}. $e',
-          ),
+          DioException(requestOptions: options, error: 'Mock Error: Failed to load mock data for ${options.path}. $e'),
         );
       }
     }

@@ -15,19 +15,12 @@ import 'package:profile/src/ui/profile/profile_cubit.dart' as _i736;
 import 'package:profile/src/ui/settings/settings_cubit.dart' as _i703;
 
 class ProfilePackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     gh.factory<_i703.SettingsCubit>(() => _i703.SettingsCubit());
-    gh.factory<_i736.ProfileCubit>(
-        () => _i736.ProfileCubit(gh<_i56.IAuthService>()));
-    gh.factory<_i107.IModuleLocalization>(
-      () => _i446.ProfileLocalizationModule(),
-      instanceName: 'Profile',
-    );
-    gh.factory<_i107.IModuleRouter>(
-      () => _i267.ProfileNavigationModule(),
-      instanceName: 'Profile',
-    );
+    gh.factory<_i736.ProfileCubit>(() => _i736.ProfileCubit(gh<_i56.IAuthService>()));
+    gh.factory<_i107.IModuleLocalization>(() => _i446.ProfileLocalizationModule(), instanceName: 'Profile');
+    gh.factory<_i107.IModuleRouter>(() => _i267.ProfileNavigationModule(), instanceName: 'Profile');
   }
 }

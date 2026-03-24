@@ -11,6 +11,6 @@ class AuthServiceImpl implements IAuthService {
 
   @override
   Future<AuthUser?> refreshUserInfo() async {
-    return await _repository.fetchUserInfo();
+    return _repository.fetchUserInfo();
   }
 }

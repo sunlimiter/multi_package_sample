@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:common/common.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
-  const ScaffoldWithNavBar({
-    required this.navigationShell,
-    Key? key,
-  }) : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
+  const ScaffoldWithNavBar({required this.navigationShell, Key? key})
+    : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
 
   final StatefulNavigationShell navigationShell;
 

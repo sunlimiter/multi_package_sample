@@ -1,5 +1,4 @@
 import 'package:auth/src/models/models.dart';
-import 'package:auth_api/auth_api.dart';
 import 'package:common/common.dart';
 import 'package:flutter/widgets.dart';
 
@@ -51,11 +50,8 @@ class LoginCubit extends BaseMviCubit<LoginIntent, LoginState, LoginSingleEvent>
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        final authUser = await _authRepository.loginByPwd(
-          state.username.value,
-          state.password.value,
-        );
-        
+        final authUser = await _authRepository.loginByPwd(state.username.value, state.password.value);
+
         if (authUser != null) {
           emit(state.copyWith(status: FormzSubmissionStatus.success));
           emitEffect(const LoginSingleEvent.loginSuccess());

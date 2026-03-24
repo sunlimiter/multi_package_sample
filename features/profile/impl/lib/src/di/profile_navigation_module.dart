@@ -20,11 +20,6 @@ class ProfileNavigationModule extends IModuleRouter {
 
   @override
   List<RouteBase> getGlobalRoutes() {
-    return [
-      GoRoute(
-        path: ProfileRoutes.settings,
-        builder: (context, state) => const SettingsPage(),
-      ),
-    ];
+    return [GoRoute(path: ProfileRoutes.settings, builder: (context, state) => const SettingsPage())];
   }
 }

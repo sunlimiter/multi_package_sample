@@ -9,9 +9,7 @@ class MessageScreen extends HookWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(AppLocalizations.of(context)?.message_title ?? 'Message')),
-      body: Center(
-        child: Text(AppLocalizations.of(context)?.message_screen ?? 'Message Screen'),
-      ),
+      body: Center(child: Text(AppLocalizations.of(context)?.message_screen ?? 'Message Screen')),
     );
   }
 }

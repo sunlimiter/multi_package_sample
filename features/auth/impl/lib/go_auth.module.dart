@@ -17,26 +17,14 @@ import 'package:common/common.dart' as _i107;
 import 'package:injectable/injectable.dart' as _i526;
 
 class AuthPackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
-    gh.factory<_i107.AppInitializer>(
-      () => _i960.AuthInitializer(),
-      instanceName: 'Auth',
-    );
-    gh.factory<_i107.IModuleLocalization>(
-      () => _i804.AuthLocalizationModule(),
-      instanceName: 'Auth',
-    );
-    gh.factory<_i107.IModuleRouter>(
-      () => _i788.AuthNavigationModule(),
-      instanceName: 'Auth',
-    );
-    gh.factory<_i281.AuthRepository>(
-        () => _i281.AuthRepository(gh<_i107.HttpClient>()));
-    gh.lazySingleton<_i56.IAuthService>(
-        () => _i366.AuthServiceImpl(gh<_i281.AuthRepository>()));
-    gh.factory<_i71.LoginCubit>(
-        () => _i71.LoginCubit(gh<_i281.AuthRepository>()));
+    gh.factory<_i107.AppInitializer>(() => _i960.AuthInitializer(), instanceName: 'Auth');
+    gh.factory<_i107.IModuleLocalization>(() => _i804.AuthLocalizationModule(), instanceName: 'Auth');
+    gh.factory<_i107.IModuleRouter>(() => _i788.AuthNavigationModule(), instanceName: 'Auth');
+    gh.factory<_i281.AuthRepository>(() => _i281.AuthRepository(gh<_i107.HttpClient>()));
+    gh.lazySingleton<_i56.IAuthService>(() => _i366.AuthServiceImpl(gh<_i281.AuthRepository>()));
+    gh.factory<_i71.LoginCubit>(() => _i71.LoginCubit(gh<_i281.AuthRepository>()));
   }
 }

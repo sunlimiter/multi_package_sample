@@ -66,7 +66,7 @@ class _ProfileHeader extends HookWidget {
         children: [
           CircleAvatar(
             radius: 40,
-            backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1),
+            backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.1),
             backgroundImage: user?.userInfo.avatar != null ? NetworkImage(user!.userInfo.avatar!) : null,
             child: user?.userInfo.avatar == null
                 ? Icon(Icons.person, size: 40, color: Theme.of(context).primaryColor)

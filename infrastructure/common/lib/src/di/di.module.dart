@@ -12,10 +12,9 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:network/network.dart' as _i372;
 
 class CommonPackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
-    gh.singleton<_i372.NetworkParams>(
-        () => _i236.AppNetworkParams(gh<_i599.AppConfig>()));
+    gh.singleton<_i372.NetworkParams>(() => _i236.AppNetworkParams(gh<_i599.AppConfig>()));
   }
 }

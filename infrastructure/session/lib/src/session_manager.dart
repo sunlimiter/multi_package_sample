@@ -18,9 +18,7 @@ abstract class SessionManager with ChangeNotifier {
 
   static SessionManager get defaultManager {
     if (_sConfig == null || _instance == null) {
-      throw StateError(
-        'SessionManager not initialized. Call SessionManager.init(...) first.',
-      );
+      throw StateError('SessionManager not initialized. Call SessionManager.init(...) first.');
     }
     return _instance!;
   }
@@ -53,7 +51,7 @@ abstract class SessionManager with ChangeNotifier {
 
   @protected
   void notifyUserInfoChanged() {
-    for (var l in List<SessionStateChangedListener>.from(_listeners)) {
+    for (final l in List<SessionStateChangedListener>.from(_listeners)) {
       try {
         l.onUserInfoChanged(this);
       } catch (e, st) {
@@ -65,7 +63,7 @@ abstract class SessionManager with ChangeNotifier {
 
   @protected
   void notifyTokenChanged() {
-    for (var l in List<SessionStateChangedListener>.from(_listeners)) {
+    for (final l in List<SessionStateChangedListener>.from(_listeners)) {
       try {
         l.onTokenInfoChanged(this);
       } catch (e, st) {

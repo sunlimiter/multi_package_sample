@@ -150,7 +150,7 @@ class _LogoutButton extends StatelessWidget {
       ),
     );
 
-    if (confirm == true) {
+    if (confirm ?? false) {
       await cubit.logout();
     }
   }

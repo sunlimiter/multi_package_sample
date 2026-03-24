@@ -110,3 +110,7 @@ linter:
 
     # Does not apply to providers
     prefer_const_constructors_in_immutables: false
+    
+    # Overly strict structural rules
+    sort_pub_dependencies: false
+    one_member_abstracts: false

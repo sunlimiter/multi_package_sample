@@ -20,5 +20,6 @@ dev_dependencies:
   injectable_generator: ^2.9.1
   build_runner: ^2.10.5
 
+resolution: workspace
 flutter:
   generate: true

@@ -9,9 +9,7 @@ class HomeScreen extends HookWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(AppLocalizations.of(context)?.home_title ?? 'Home')),
-      body: Center(
-        child: Text(AppLocalizations.of(context)?.home_screen ?? 'Home Screen'),
-      ),
+      body: Center(child: Text(AppLocalizations.of(context)?.home_screen ?? 'Home Screen')),
     );
   }
 }

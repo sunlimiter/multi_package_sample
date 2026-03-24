@@ -16,19 +16,17 @@ import 'package:network/src/interceptors/mock_interceptor.dart' as _i429;
 import 'package:network/src/params/network_params.dart' as _i668;
 
 class NetworkPackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     final networkModule = _$NetworkModule();
     gh.factory<_i685.AuthInterceptor>(() => _i685.AuthInterceptor());
     gh.factory<_i429.MockInterceptor>(() => _i429.MockInterceptor());
-    gh.lazySingleton<_i361.Dio>(() => networkModule.provideDio(
-          gh<_i668.NetworkParams>(),
-          gh<_i685.AuthInterceptor>(),
-          gh<_i429.MockInterceptor>(),
-        ));
-    gh.lazySingleton<_i118.HttpClient>(
-        () => _i427.DioHttpClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i361.Dio>(
+      () =>
+          networkModule.provideDio(gh<_i668.NetworkParams>(), gh<_i685.AuthInterceptor>(), gh<_i429.MockInterceptor>()),
+    );
+    gh.lazySingleton<_i118.HttpClient>(() => _i427.DioHttpClient(gh<_i361.Dio>()));
   }
 }
 

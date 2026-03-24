@@ -40,4 +40,5 @@ dev_dependencies:
   freezed: ^3.2.3
   injectable_generator: ^2.9.1
 
+resolution: workspace
 flutter:

@@ -9,13 +9,10 @@ class AuthRepository {
   AuthRepository(this._httpClient);
 
   Future<AuthUser?> loginByPwd(String username, String password) async {
-    var result = await _httpClient.post(
-      '/api/loginByPwd',
-      body: {'userName': username, 'password': password},
-    );
-    
+    var result = await _httpClient.post('/api/loginByPwd', body: {'userName': username, 'password': password});
+
     debugPrint('AuthRepository login result: ${result.ok}, error: ${result.error}, data: ${result.result}');
-    
+
     if (result.ok) {
       final authUser = AuthUser.fromJson(result.result);
       await SessionManager.defaultManager.setUser(authUser);
@@ -28,7 +25,7 @@ class AuthRepository {
 
   Future<AuthUser?> fetchUserInfo() async {
     final result = await _httpClient.get('/api/userInfo');
-    
+
     if (result.ok) {
       final newUserInfo = UserInfo.fromJson(result.result);
       final currentUser = SessionManager.defaultManager.getUser<AuthUser>();

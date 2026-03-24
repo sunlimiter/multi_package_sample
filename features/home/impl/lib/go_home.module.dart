@@ -12,16 +12,10 @@ import 'package:home/src/di/home_navigation_module.dart' as _i138;
 import 'package:injectable/injectable.dart' as _i526;
 
 class HomePackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
-    gh.factory<_i107.IModuleRouter>(
-      () => _i138.HomeNavigationModule(),
-      instanceName: 'Home',
-    );
-    gh.factory<_i107.IModuleLocalization>(
-      () => _i793.HomeLocalizationModule(),
-      instanceName: 'Home',
-    );
+    gh.factory<_i107.IModuleRouter>(() => _i138.HomeNavigationModule(), instanceName: 'Home');
+    gh.factory<_i107.IModuleLocalization>(() => _i793.HomeLocalizationModule(), instanceName: 'Home');
   }
 }

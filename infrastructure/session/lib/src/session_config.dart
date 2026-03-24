@@ -5,9 +5,5 @@ class SessionConfig {
 
   final Object? Function(String json)? userFromJson;
 
-  const SessionConfig({
-    required this.configName,
-    this.userToJson,
-    this.userFromJson,
-  });
+  const SessionConfig({required this.configName, this.userToJson, this.userFromJson});
 }

@@ -22,9 +22,11 @@ class PreferencesSessionManager extends SessionManager {
 
   Future<void> _lastWrite = Future.value();
 
-  PreferencesSessionManager(this._config) : _keyToken = '${_escape(_config.configName)}_token', _keyUserJson = '${_escape(_config.configName)}_user_json';
+  PreferencesSessionManager(this._config)
+    : _keyToken = '${_escape(_config.configName)}_token',
+      _keyUserJson = '${_escape(_config.configName)}_user_json';
 
-  static String _escape(String s) => s.replaceAll(RegExp(r'[^0-9a-zA-Z_]'), '_');
+  static String _escape(String s) => s.replaceAll(RegExp('[^0-9a-zA-Z_]'), '_');
 
   @override
   Future<void> loadData() async {

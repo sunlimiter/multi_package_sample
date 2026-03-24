@@ -14,8 +14,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
   json_serializable: ^6.11.2
   build_runner: ^2.12.1
 
+resolution: workspace
 flutter:

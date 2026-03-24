@@ -14,10 +14,9 @@ abstract class MviViewState {
 abstract class MviSingleEvent {}
 
 /// 基础的 MVI Cubit 实现
-abstract class BaseMviCubit<I extends MviIntent, S extends MviViewState, E extends MviSingleEvent>
-    extends Cubit<S> {
+abstract class BaseMviCubit<I extends MviIntent, S extends MviViewState, E extends MviSingleEvent> extends Cubit<S> {
   final _effectController = StreamController<E>.broadcast();
-  
+
   Stream<E> get effectStream => _effectController.stream;
 
   BaseMviCubit(S initialState) : super(initialState);
